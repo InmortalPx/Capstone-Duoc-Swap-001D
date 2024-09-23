@@ -1,6 +1,6 @@
 # Capstone-Duoc-Swap-001D
 
-Integrantes: 
-Matías Carvajal  
-Carlos Muñoz
-Jorge Pavez
+Integrantes:n\ 
+n\Matías Carvajal  
+n\Carlos Muñoz
+n\Jorge Pavez
