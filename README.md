@@ -1,6 +1,7 @@
-# Capstone-Duoc-Swap-001D
+# Capstone Duoc Swap 001D
 
-Integrantes:n\ 
-n\Matías Carvajal  
-n\Carlos Muñoz
-n\Jorge Pavez
+Matías Carvajal
+
+Carlos Muñoz
+
+Jorge Pavez
