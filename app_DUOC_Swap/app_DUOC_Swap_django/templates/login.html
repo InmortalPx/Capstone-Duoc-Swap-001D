@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Usuario - "Duoc Swap"</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+    <style>
+        .navbar {
+            height: 66px;
+            background-color: #2765a2;
+            opacity: 1;
+        }
+
+        .login-form {
+            border-radius: 10px;
+        }
+
+        .form-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-title h1 {
+            margin-right: 10px;
+            color: #acaca3;
+        }
+
+        .form-title h1:nth-child(2) {
+            margin-right: 0px;
+            color: #FFB800;
+        }
+
+        .form-title h1:nth-child(3) {
+            color: #005a8c;
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-blue bg-blue">
+    </nav>
+    <div class="container">
+        <div class="login-form">
+            <div class="form-title">
+                <h1><strong>Proyecto</strong></h1>
+                <h1><strong>Duoc</strong></h1>
+                <h1><strong>Swap</strong></h1>
+            </div>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <h6 class="text-center text-muted mb-3">Tu plataforma de intercambio de material educativo</h6>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <form class="text-center" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="text-center">
+                    <button id="btnIniciarSesion" class="btn btn-primary" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);" type="submit">Iniciar Sesión</button>
+                </div>
+            </form>
+            <div class="text-center">
+                <a class="d-block mt-3 text-center" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);" href={% url 'password_reset' %}>¿Olvidaste tu Contraseña?</a>
+                <button id="btnRegistroSesion" class="btn btn-warning mt-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);" onclick="window.location.href='{% url 'register' %}'">Crear cuenta</button>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
