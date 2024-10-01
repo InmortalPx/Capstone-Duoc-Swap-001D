@@ -17,8 +17,36 @@
     }
 }                                                       
 ```                                             
-- Paso 3: abrir el archivo en el visual, Ejecutar comandos: pip install django,  pip install mysqlclient, py -m pip install Pillow, luego crear entorno virtual: C:\Users\c.munoz8\Desktop\ProyectoDuocSwap>py -m venv env 
+- Paso 3: abrir el archivo en el visual y ejecutar comandos:
+```
+pip install django,
+pip install mysqlclient,
+py -m pip install Pillow,
+```
+  
+luego crear entorno virtual:   
+  ```
+ C:\Users\c.munoz8\Desktop\ProyectoDuocSwap>py -m venv env
+  ```
+- Paso 4:
+```
+env\scripts\activate
+```
+para lograr activar el entorno virtual, luego ir a la carpeta llamada app_duoc_swap para correr el comando: 
+  ```
+py manage.py makemigrations
+  ```
+para revisar si tiene cambios la base de datos: 
+```
+py manage.py migrate
+```
+para migrar los datos desde django a base de datos
 
-- Paso 4: env\scripts\activate # para lograr activar el entorno virtual, luego ir a la carpeta llamada app_duoc_swap para correr el comando: py manage.py makemigrations #para revisar si tiene cambios la base de datos, py manage.py migrate # para migrar los datos desde django a base de datos
-
-- Paso 5: (env) C:\Users\c.munoz8\Desktop\ProyectoDuocSwap> teniendo el entorno virtual corriendo, después para ir a la carpeta app_duoc_swap recuerden digitar en la terminal cd app_duoc_swap y se vera la ruta donde deben iniciar los comandos para correr su proyecto ejemplo: py manage.py runserver
+- Paso 5:
+```
+(env) C:\Users\c.munoz8\Desktop\ProyectoDuocSwap>
+```
+teniendo el entorno virtual corriendo, después para ir a la carpeta app_duoc_swap recuerden digitar en la terminal cd app_duoc_swap y se vera la ruta donde deben iniciar los comandos para correr su proyecto ejemplo:
+```
+py manage.py runserver
+```
