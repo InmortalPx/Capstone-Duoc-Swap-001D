@@ -1,0 +1,50 @@
+Términos y Condiciones de Uso de Duoc Swap
+1. Introducción
+Estos Términos y Condiciones regulan el uso de la plataforma Duoc Swap, destinada al intercambio de productos entre los estudiantes de Duoc UC San Bernardo. Al acceder y utilizar Duoc Swap, el usuario acepta cumplir con estos términos, así como con las leyes y regulaciones aplicables en Chile.
+
+2. Funcionalidad de Intercambio
+2.1 Proceso de Intercambio
+La plataforma Duoc Swap facilita el intercambio de productos entre estudiantes de manera segura y controlada. Cada paso del proceso, desde la solicitud hasta la confirmación del intercambio, está diseñado para asegurar la correcta ejecución del mismo, respetando los tiempos acordados entre las partes.
+
+2.2 Confirmación de Entrega
+Ambas partes deben confirmar la recepción del producto intercambiado a través de la plataforma. Este paso es obligatorio para completar el proceso de intercambio y garantizar que el producto solicitado haya llegado a su destino.
+
+2.3 Gestión de Tiempo
+Duoc Swap incorpora mecanismos para gestionar los tiempos de cada usuario durante el intercambio, asegurando que se respeten los plazos acordados entre los estudiantes involucrados.
+
+3. Requisitos de Seguridad
+3.1 Ingreso y Seguridad (SEG1)
+El acceso a Duoc Swap está controlado mediante un sistema de validación a través de un torniquete virtual, diseñado para asegurar que solo los estudiantes autorizados puedan acceder a la plataforma.
+
+3.2 Supervisión por GG.SS. (SEG2)
+Los intercambios serán verificados por personal de seguridad antes de ser completados. Este proceso es obligatorio y tiene como objetivo garantizar la seguridad de todas las transacciones realizadas dentro del campus.
+
+3.3 Monitoreo de Intercambios por el Administrador (SEG3)
+Los administradores de Duoc Swap supervisarán en tiempo real todos los intercambios realizados en la plataforma. Cualquier irregularidad detectada será revisada y, de ser necesario, se tomarán medidas correctivas para garantizar el cumplimiento de las normativas establecidas.
+
+4. Cumplimiento Legal
+4.1 Transparencia de Información (Ley N° 21.314)
+Duoc Swap se compromete a proporcionar a los usuarios información clara y precisa sobre el estado de los intercambios, así como sobre las políticas de uso, términos y condiciones. Toda la información relevante estará disponible de manera transparente y accesible para todos los usuarios.
+
+4.2 Protección de Datos Personales (Ley N° 19.628)
+La plataforma garantiza la protección de los datos personales de los usuarios, los cuales serán tratados de acuerdo con las disposiciones de la Ley N° 19.628. Los usuarios tendrán derecho a acceder, modificar y solicitar la eliminación de sus datos personales en cualquier momento.
+
+4.3 Registro y Validación de Intercambios (Ley N° 18.045)
+Cada intercambio realizado en Duoc Swap será registrado y validado conforme a las normas establecidas en la Ley de Mercado de Valores (Ley N° 18.045). Este registro tiene como finalidad asegurar la legalidad y transparencia de todas las operaciones realizadas en la plataforma.
+
+5. Condiciones de Uso
+5.1 Uso Permitido
+Duoc Swap está disponible exclusivamente para estudiantes de Duoc UC San Bernardo. Los usuarios se comprometen a utilizar la plataforma únicamente para los fines permitidos y en conformidad con estos términos y condiciones.
+
+5.2 Prohibiciones
+Está prohibido el uso de Duoc Swap para actividades fraudulentas o ilegales. Cualquier violación a estas disposiciones resultará en la suspensión o terminación del acceso del usuario a la plataforma.
+
+5.3 Modificaciones
+Duoc Swap se reserva el derecho de modificar estos Términos y Condiciones en cualquier momento. Los usuarios serán notificados de cualquier cambio significativo y deberán aceptar los términos actualizados para continuar utilizando la plataforma.
+
+6. Disposiciones Finales
+6.1 Aceptación de Términos
+El uso continuo de Duoc Swap implica la aceptación plena de estos Términos y Condiciones. Si un usuario no está de acuerdo con alguna de las disposiciones aquí contenidas, deberá abstenerse de utilizar la plataforma.
+
+6.2 Ley Aplicable y Jurisdicción
+Estos Términos y Condiciones se rigen por las leyes de la República de Chile. Cualquier disputa que surja en relación con el uso de Duoc Swap será sometida a la jurisdicción de los tribunales competentes en Chile.

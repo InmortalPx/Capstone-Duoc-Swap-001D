@@ -1,0 +1,65 @@
+id	nombreTags	categoriaTags_id
+1	Libros de contabilidad	1
+2	Calculadoras financieras	1
+3	Archivadores y carpetas	1
+4	Material de oficina	1
+5	Equipos de presentación	1
+6	Micrófonos y grabadoras	2
+7	Cámaras fotográficas	2
+8	Libros de comunicación	2
+9	Equipos de sonido	2
+10	Software de edición de video	2
+11	Herramientas de construcción	3
+12	Equipos de protección personal	3
+-- Poblar la tabla de tipos de transacción (TipoTransaccion)
+INSERT INTO app_duoc_swap_django_tipotrans (id, nombreTrans) VALUES
+(1, 'Cambio'),
+(2, 'Regalo');
+
+-- Poblar la tabla de categorías (Categoria)
+INSERT INTO app_duoc_swap_django_categoria (id, nombreCategoria) VALUES
+(1, 'Administración y Negocios'),
+(2, 'Comunicación'),
+(3, 'Construcción'),
+(4, 'Diseño'),
+(5, 'Gastronomía'),
+(6, 'Informática y Telecomunicaciones'),
+(7, 'Ingeniería y Recursos Naturales'),
+(8, 'Salud'),
+(9, 'Turismo');
+
+-- Poblar la tabla de tags (Tags)
+INSERT INTO app_duoc_swap_django_tags (id, nombreTags, categoriaTags_id) VALUES
+(13, 'Planos y diseños arquitectónicos', 3),
+(14, 'Materiales de construcción', 3),
+(15, 'Libros Construcción', 3),
+(16, 'Software de diseño gráfico', 4),
+(17, 'Materiales artísticos (pinceles, acuarelas, etc.)', 4),
+(18, 'Modelos y maquetas', 4),
+(19, 'Libros de diseño de interiores', 4),
+(20, 'Equipos de dibujo técnico', 4),
+(21, 'Utensilios de cocina', 5),
+(22, 'Libros de recetas', 5),
+(23, 'Electrodomésticos para cocinar', 5),
+(24, 'Vajilla y cubertería', 5),
+(25, 'Ingredientes y especias', 5),
+(26, 'Computadoras y laptops', 6),
+(27, 'Dispositivos de almacenamiento (discos duros, pendrives)', 6),
+(28, 'Software de programación', 6),
+(29, 'Cables y conectores', 6),
+(30, 'Libros Programación', 6),
+(31, 'Instrumentos de medición y/o Mecánica', 7),
+(32, 'Libros Ingeniería', 7),
+(33, 'Equipos de laboratorio', 7),
+(34, 'Software Ingeniería', 7),
+(35, 'Mapas y brújulas', 7),
+(36, 'Material médico (vendas, jeringas, etc.)', 8),
+(37, 'Libros Medicina', 8),
+(38, 'Aparatos de gimnasia', 8),
+(39, 'Ropa o uniformes', 8),
+(40, 'Equipos de primeros auxilios', 8),
+(41, 'Mochilas y maletas de viaje', 9),
+(42, 'Tiendas de campaña y sacos de dormir', 9),
+(43, 'Guías turísticas', 9),
+(44, 'Transporte', 9),
+(45, 'Accesorios para senderismo y camping', 9);
