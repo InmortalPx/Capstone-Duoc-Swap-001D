@@ -1,0 +1,20 @@
+<div class="mensaje-container">
+  <h2>Chat</h2>
+
+  <div class="mensajes">
+    <div *ngFor="let mensaje of mensajes" [ngClass]="{'mensaje-emisor': mensaje.emisorId === nuevoMensaje.emisorId, 'mensaje-receptor': mensaje.emisorId !== nuevoMensaje.emisorId}">
+      <strong>{{ mensaje.emisorId }}:</strong> {{ mensaje.contenido }}
+    </div>
+  </div>
+
+  <div class="nuevo-mensaje">
+    <input 
+      type="text" 
+      [(ngModel)]="nuevoMensaje.contenido" 
+      placeholder="Escribe un mensaje..." 
+      (keyup.enter)="sendMensaje()"
+    />
+    <button (click)="sendMensaje()">Enviar</button>
+  </div>
+</div>
+  

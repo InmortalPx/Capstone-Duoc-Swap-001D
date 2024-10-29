@@ -1,0 +1,155 @@
+.match-container {
+    max-width: 600px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 20px; /* Espacio interno */
+    background-color: #f9f9f9; /* Fondo claro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  h2 {
+    text-align: center; /* Centra el título */
+    font-size: 24px; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+    margin-bottom: 20px; /* Espacio abajo */
+  }
+  
+  label {
+    display: block; /* Hace que cada etiqueta esté en su propia línea */
+    margin-bottom: 5px; /* Espacio abajo de la etiqueta */
+    font-weight: bold; /* Acentúa el texto */
+  }
+  
+  input[type="text"] {
+    width: 100%; /* Ancho completo */
+    padding: 10px; /* Relleno interno */
+    margin-bottom: 15px; /* Espacio abajo */
+    border: 1px solid #ccc; /* Borde ligero */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px; /* Tamaño de fuente */
+  }
+  
+  input[type="text"]:focus {
+    border-color: #007bff; /* Color de borde al enfocar */
+    outline: none; /* Quita el contorno predeterminado */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra al enfocar */
+  }
+  
+  button {
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 15px; /* Relleno interno */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cursor indica que es clickeable */
+    font-size: 16px; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave */
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+  }
+  
+  h3 {
+    margin-top: 30px; /* Espacio arriba del título */
+    font-size: 20px; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+  }
+  
+  div.match-list {
+    margin-top: 15px; /* Espacio arriba de la lista */
+    border-top: 1px solid #ccc; /* Línea separadora */
+    padding-top: 10px; /* Espacio arriba del contenido de la lista */
+  }
+  
+  div.match-item {
+    padding: 8px; /* Relleno interno para cada elemento */
+    border-bottom: 1px solid #eaeaea; /* Línea separadora en la lista */
+  }
+  
+  div.match-item:last-child {
+    border-bottom: none; /* Quita el borde del último elemento */
+  }
+
+  .card {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: 0.3s;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+  
+  .btn-primary {
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,123,255,0.3);
+  }
+  
+  .list-group-item {
+    transition: background-color 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f8f9fa;
+  }
+
+  /* match.component.css */
+.match-container {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.card {
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+  background: linear-gradient(45deg, #007bff, #6610f2);
+  border-bottom: none;
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #007bff, #6610f2);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background: linear-gradient(45deg, #0056b3, #5b0edb);
+  transform: translateY(-2px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.list-group-item {
+  transition: all 0.3s ease;
+  border-left: 5px solid transparent;
+}
+
+.list-group-item:hover {
+  background-color: #e9ecef;
+  border-left: 5px solid #007bff;
+}
+
+.match-icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+}

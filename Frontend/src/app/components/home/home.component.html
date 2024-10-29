@@ -1,0 +1,60 @@
+<body>
+  <!-- Navbar con Bootstrap -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center">
+        <button mat-icon-button (click)="openModal()" class="btn btn-link text-white">
+          <mat-icon>shield</mat-icon>
+        </button>
+        <span class="navbar-text ms-1">Admin</span>
+      </div>
+      
+      <div class="navbar-brand mx-auto d-flex align-items-center">
+        <img src="https://i.ibb.co/bWYqgpQ/Captura-de-pantalla-2024-10-17-173641-removebg-preview.png" alt="Logo DSR" class="logo img-fluid" style="height: 50px;">
+        <span class="ms-2">DuocSwap</span>
+      </div>
+
+      <div class="d-flex align-items-center">
+        <button mat-icon-button (click)="openModal2()" class="btn btn-link text-white">
+          <mat-icon>school</mat-icon>
+        </button>
+        <span class="navbar-text ms-1">Student</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sección de Contenido -->
+  <div class="content-section container mt-5 pt-5">
+    <div class="header text-center">
+      <div class="overlay bg-light rounded shadow p-4">
+        <p class="fancy-paragraph bg-success text-white p-3 rounded">Bienvenidos/as al sistema de gestión de material educativo de DuocSwap.</p>
+        <h2 class="text-primary">Estimados estudiantes y colaboradores:</h2>
+        <p>En conformidad con nuestras políticas de seguridad, les recordamos la importancia de mantener un control riguroso y actualizado del material educativo a su disposición...</p>
+        <p>Recuerden que DuocSwap les permite intercambiar materiales educativos con otros estudiantes...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de Noticias -->
+  <div *ngIf="showNoticias" class="seccion-noticias container mt-5">
+    <h2 class="text-center text-primary">DuocSwap su plataforma interactiva</h2>
+    <div class="row g-4 mt-3">
+      <div *ngFor="let noticia of noticiasItems" class="col-md-4">
+        <div class="card shadow-sm h-100">
+          <img [src]="noticia.imagen" [alt]="noticia.titulo" class="card-img-top noticia-imagen">
+          <div class="card-body">
+            <h5 class="card-title">{{ noticia.titulo }}</h5>
+            <p class="card-text">{{ noticia.contenido }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer bg-light text-center py-3 mt-auto">
+    <div class="container">
+      <p class="mb-0 text-muted">&copy; 2024 DuocSwap, Norma ISO/IEC 27001, todos los derechos reservados.</p>
+    </div>
+  </footer>
+</body>

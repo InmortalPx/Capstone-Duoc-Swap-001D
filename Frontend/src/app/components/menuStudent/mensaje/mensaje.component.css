@@ -1,0 +1,65 @@
+.mensaje-container {
+    max-width: 600px; /* Ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor */
+    padding: 20px; /* Espacio interno */
+    background-color: #f9f9f9; /* Fondo claro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  h2 {
+    text-align: center; /* Centra el título */
+    color: #333; /* Color del texto */
+  }
+  
+  .mensajes {
+    max-height: 400px; /* Limita la altura del área de mensajes */
+    overflow-y: auto; /* Añade scroll si hay muchos mensajes */
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc; /* Borde superior */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #fff; /* Fondo blanco para mensajes */
+  }
+  
+  .mensaje {
+    padding: 8px; /* Espaciado interno para cada mensaje */
+    border-radius: 5px; /* Bordes redondeados en mensajes */
+    margin-bottom: 5px; /* Margen entre mensajes */
+  }
+  
+  .mensaje-emisor {
+    background-color: #e1f5fe; /* Fondo azul claro para el emisor */
+    text-align: right; /* Alineación a la derecha */
+  }
+  
+  .mensaje-receptor {
+    background-color: #ffe0b2; /* Fondo naranja claro para el receptor */
+    text-align: left; /* Alineación a la izquierda */
+  }
+  
+  .nuevo-mensaje {
+    display: flex; /* Usamos Flexbox para alinear el input y el botón */
+  }
+  
+  input[type="text"] {
+    flex: 1; /* El input ocupa todo el espacio disponible */
+    padding: 10px; /* Relleno interno */
+    border: 1px solid #ccc; /* Borde ligero */
+    border-radius: 5px; /* Bordes redondeados */
+    margin-right: 10px; /* Espacio a la derecha del input */
+  }
+  
+  button {
+    padding: 10px 15px; /* Tamaño del botón */
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Indica que es clickeable */
+    transition: background-color 0.3s; /* Transición para el efecto hover */
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+  }

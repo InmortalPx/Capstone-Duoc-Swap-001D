@@ -1,0 +1,21 @@
+<div>
+    <h2>Publicaciones</h2>
+    <form (ngSubmit)="createPublicacion()">
+      <label for="idEstudiante">Número de Control:</label>
+      <input id="idEstudiante" [(ngModel)]="nuevaPublicacion.idEstudiante" name="idEstudiante">
+  
+      <label for="titulo">Título:</label>
+      <input id="titulo" [(ngModel)]="nuevaPublicacion.titulo" name="titulo">
+  
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" [(ngModel)]="nuevaPublicacion.descripcion" name="descripcion"></textarea>
+  
+      <button type="submit">Publicar</button>
+    </form>
+  
+    <div *ngFor="let publicacion of publicaciones">
+      <h3>{{ publicacion.titulo }}</h3>
+      <p>{{ publicacion.descripcion }}</p>
+    </div>
+  </div>
+  

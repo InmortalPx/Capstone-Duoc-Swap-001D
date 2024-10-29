@@ -1,0 +1,165 @@
+-- Eliminar la base de datos si ya existe
+DROP DATABASE IF EXISTS Swaps;
+
+-- Crear la base de datos
+CREATE DATABASE Swaps;
+
+-- Usar la base de datos
+USE Swaps;
+
+-- Crear tabla 'Estudiante'
+CREATE TABLE Estudiante (
+    IdEstudiante INT AUTO_INCREMENT PRIMARY KEY,
+    NombreCompleto VARCHAR(50) NOT NULL,
+    Correo VARCHAR(100) NOT NULL,
+    Telefono VARCHAR(15) NOT NULL,
+    IdStudent VARCHAR(10),
+    NombreUsuario VARCHAR(50) NOT NULL UNIQUE,
+    Contrasena VARCHAR(255) NOT NULL
+);
+
+-- Crear tabla 'Usuario' para Administradores
+CREATE TABLE Usuario (
+    IdUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    NombreCompleto NVARCHAR(50) NOT NULL,
+    Correo NVARCHAR(100) NOT NULL,
+    Telefono NVARCHAR(15) NOT NULL,
+    IdAdmin VARCHAR(10),
+    NombreUsuario NVARCHAR(50) NOT NULL UNIQUE,
+    Contrasena NVARCHAR(255) NOT NULL
+);
+
+-- Crear tabla 'Material'
+CREATE TABLE Material (
+    Serie VARCHAR(14) PRIMARY KEY,
+    Tipo VARCHAR(100) NOT NULL,
+    Marca VARCHAR(100) NOT NULL,
+    Modelo VARCHAR(100) NOT NULL,
+    Categoria VARCHAR(100) NOT NULL,
+    Descripcion TEXT NOT NULL,
+    Cantidades INT NOT NULL,
+    Portada LONGBLOB
+);
+
+-- Crear tabla 'Intercambio'
+CREATE TABLE Intercambio (
+    IdIntercambio INT AUTO_INCREMENT PRIMARY KEY,
+    IdEstudiante VARCHAR(13) NOT NULL,
+    Serie VARCHAR(14) NOT NULL,
+    FechaIntercambio DATE,
+    FechaDevolucion DATE,
+    IdUsuario INT,
+    Estado VARCHAR(30) DEFAULT 'Pendiente',
+    FOREIGN KEY (IdEstudiante) REFERENCES Estudiante(IdEstudiante),
+    FOREIGN KEY (SERIE) REFERENCES Material(IdEstudiante),
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
+);
+
+-- Crear tabla 'Publicaciones' para el foro de intercambio
+CREATE TABLE Publicaciones (
+    IdPublicacion INT AUTO_INCREMENT PRIMARY KEY,
+    IdEstudiante VARCHAR(13) NOT NULL,
+    Titulo VARCHAR(100) NOT NULL,
+    Descripcion TEXT NOT NULL,
+    FechaPublicacion DATE,
+    Estado VARCHAR(20) DEFAULT 'Disponible',
+    FOREIGN KEY (IdEstudiante) REFERENCES Estudiante(IdEstudiante)
+);
+
+-- Crear tabla 'Mensajes' para comunicación entre estudiantes
+CREATE TABLE Mensajes (
+    IdMensaje INT AUTO_INCREMENT PRIMARY KEY,
+    EmisorId INT NOT NULL,
+    ReceptorId INT NOT NULL,
+    Contenido TEXT NOT NULL,
+    FechaEnvio DATETIME DEFAULT CURRENT_TIMESTAMP,
+    Leido BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (EmisorId) REFERENCES Estudiante(IdEstudiante),
+    FOREIGN KEY (ReceptorId) REFERENCES Estudiante(IdEstudiante)
+);
+
+-- Crear tabla 'MatchEvent' para registrar los matches entre usuarios
+CREATE TABLE MatchEvent (
+    IdMatch INT AUTO_INCREMENT PRIMARY KEY,
+    User1Id INT NOT NULL,
+    User2Id INT NOT NULL,
+    Serie VARCHAR(14) NOT NULL,
+    FechaMatch DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (User1Id) REFERENCES Estudiante(IdEstudiante),
+    FOREIGN KEY (User2Id) REFERENCES Estudiante(IdEstudiante),
+    FOREIGN KEY (Serie) REFERENCES Material(Serie)
+);
+
+-- Crear tabla 'Sanciones'
+CREATE TABLE IF NOT EXISTS Sanciones (
+    IdSancion INT AUTO_INCREMENT PRIMARY KEY,
+    IdEstudiante INT NOT NULL,
+    Descripcion TEXT NOT NULL,
+    FechaInicio DATE NOT NULL,
+    Estatus VARCHAR(50) NOT NULL DEFAULT 'Activa',
+    IdIntercambio INT,
+    FOREIGN KEY (IdEstudiante) REFERENCES Estudiante(IdEstudiante),
+    FOREIGN KEY (IdIntercambio) REFERENCES Intercambio(IdIntercambio)
+);
+
+-- Procedimiento para verificar sanciones
+DELIMITER //
+CREATE PROCEDURE VerificarSanciones()
+BEGIN
+    DECLARE done INT DEFAULT 0;
+    DECLARE intercambioId INT;
+    DECLARE IdEstudiante INT;
+    DECLARE cur CURSOR FOR
+        SELECT IdIntercambio, IdEstudianteOfrece
+        FROM Intercambio
+        WHERE Estado = 'Pendiente' AND CURDATE() > FechaIntercambio;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    OPEN cur;
+
+    leer_cursor: LOOP
+        FETCH cur INTO intercambioId, IdEstudiante;
+        IF done THEN
+            LEAVE leer_cursor;
+        END IF;
+
+        -- Insertar sanción si se incumplió la fecha
+        INSERT INTO Sanciones (IdEstudiante, Descripcion, FechaInicio, Estatus, IdIntercambio)
+        VALUES (
+            IdEstudiante,
+            'Incumplimiento de la fecha acordada para la entrega del producto',
+            CURDATE(),
+            'Activa',
+            intercambioId
+        );
+
+        -- Actualizar el estado del intercambio a 'Incumplido'
+        UPDATE Intercambio
+        SET Estado = 'Incumplido'
+        WHERE IdIntercambio = intercambioId;
+    END LOOP;
+
+    CLOSE cur;
+END //
+DELIMITER ;
+
+-- Crear un evento que ejecute el procedimiento de verificación de sanciones diariamente
+DROP EVENT IF EXISTS VerificarSancionesDiarias;
+CREATE EVENT IF NOT EXISTS VerificarSancionesDiarias
+ON SCHEDULE EVERY 1 DAY
+DO
+    CALL VerificarSanciones();
+
+-- Consultas de ejemplo para verificar los datos
+SELECT * FROM Estudiante;
+SELECT * FROM Usuario;
+SELECT * FROM Material;
+SELECT * FROM Intercambio;
+SELECT * FROM Sanciones;
+SELECT * FROM Publicaciones;
+SELECT * FROM Mensajes;
+
+-- Configurar el usuario 'root' con contraseña
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'duocswap';
+FLUSH PRIVILEGES;

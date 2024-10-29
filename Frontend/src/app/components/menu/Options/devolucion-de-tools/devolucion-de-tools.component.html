@@ -1,0 +1,51 @@
+<div class="search-container">
+    <div class="search-header">
+      <h2>Devolución de Material Academico</h2>
+    </div>
+    <div class="search-filters">
+      <mat-form-field appearance="fill">
+        <mat-label>Número de Control</mat-label>
+        <input matInput [(ngModel)]="searchControl" placeholder="Buscar por número de control">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo Material Academico</mat-label>
+        <input matInput [(ngModel)]="searchTitle" placeholder="Buscar por tipo">
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Serial</mat-label>
+        <input matInput [(ngModel)]="searchSERIE" placeholder="Buscar por SERIE">
+      </mat-form-field>
+  
+      <button mat-raised-button (click)="loadLoans()">Buscar</button>
+    </div>
+  
+    <div *ngIf="loading">Cargando...</div>
+    <table *ngIf="!loading">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>SERIAL</th>
+          <th>Tipo</th>
+          <th>Número de Control</th>
+          <th>Fecha de Intercambio</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="!loading">
+          <tr *ngFor="let loan of filterLoans()" [@fadeOut]>
+            <td>{{ loan.id }}</td>
+            <td>{{ loan.SERIE }}</td>
+            <td>{{ loan.Tipo }}</td>
+            <td>{{ loan.IdEstudiante }}</td>
+            <td>{{ loan.FechaIntercambio | date }}</td>
+            <td>
+              <button mat-button (click)="returnTool(loan.id, loan.SERIE)">Devolver</button>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>

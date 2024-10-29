@@ -1,0 +1,83 @@
+<div>
+  <!-- Navbar -->
+  <div class="navbar">
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h2 class="welcome-title">Bienvenidos a:</h2>
+    <img src="https://i.ibb.co/bWYqgpQ/Captura-de-pantalla-2024-10-17-173641-removebg-preview.png" 
+         alt="Logo DSR" 
+         class="logo" 
+         (click)="showInicioSection()"> 
+    
+    <div>
+      <div class="image-container">
+        <button mat-icon-button [matMenuTriggerFor]="Notification">
+          <mat-icon>notifications</mat-icon>
+        </button>
+        <mat-menu #Notification="matMenu">
+          <span>Hola!, Aquí te mostraremos notificaciones relacionadas con mejoras en DuocSwap.</span>
+        </mat-menu>
+      </div>
+
+      <div class="image-container">
+        <button mat-icon-button [matMenuTriggerFor]="Question">
+          <mat-icon>help</mat-icon>
+        </button>
+        <mat-menu #Question="matMenu">
+          <span>Hola!, Aquí te mostraremos información relacionada a la página y algún contacto nuevo.</span>
+        </mat-menu>
+      </div>
+
+      <div class="image-container">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">
+            <span>Cerrar Sesión</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="main-layout">
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar" [ngClass]="{'hidden': isSidebarHidden}">
+      <ul>
+        <li><a (click)="activeSection = 'noticias'">Inicio</a></li>
+        <li><a (click)="activeSection = 'perfil'">Mi Perfil</a></li>
+        <li><a (click)="activeSection = 'materiales'">Materiales Educativos</a></li>
+        <li><a (click)="activeSection = 'intercambios'">Mis Intercambios</a></li>
+        <li><a (click)="activeSection = 'matches'">Mis Matches</a></li>
+        <li><a (click)="activeSection = 'mensaje'">Mensajería</a></li>
+        <li><a (click)="activeSection = 'sanciones'">Sanciones</a></li>
+        <li><a (click)="activeSection = 'ayuda'">Ayuda y Soporte</a></li>
+      </ul>
+    </div>
+
+    <!-- Content Section -->
+    <div class="content-section" [ngClass]="{'full-width': isSidebarHidden}">
+      <div [ngSwitch]="activeSection">
+        <app-noticias *ngSwitchCase="'noticias'"></app-noticias>
+        <app-perfil *ngSwitchCase="'perfil'"></app-perfil>
+        <app-materiales *ngSwitchCase="'materiales'"></app-materiales>
+        <app-intercambios *ngSwitchCase="'intercambios'"></app-intercambios>
+        <app-match *ngSwitchCase="'matches'"></app-match>
+        <app-mensaje *ngSwitchCase="'mensaje'"></app-mensaje>
+        <app-sanciones *ngSwitchCase="'sanciones'"></app-sanciones>
+        <app-ayuda *ngSwitchCase="'ayuda'"></app-ayuda>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 DuocSwap, Norma ISO/IEC 27001, todos los derechos reservados.</p>
+    </div>
+  </footer>
+</div>
+

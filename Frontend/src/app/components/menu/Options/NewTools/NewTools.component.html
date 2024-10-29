@@ -1,0 +1,58 @@
+<div class="container">
+  <h1 class="form-title">Registrar Material de intercambio</h1>
+  <form (ngSubmit)="saveTool()">
+      <div class="form-group">
+          <label for="material">Nombre de la Material</label>
+          <input type="text" id="material" placeholder="Nombre del Material" maxlength="50" [(ngModel)]="material.nombre" name="material.nombre" required>
+      </div>
+      <div class="form-group">
+          <label for="marca">Marca</label>
+          <input type="text" id="marca" placeholder="Nombre de la marca" maxlength="50" [(ngModel)]="marca" name="marca" required>
+      </div>
+      <div class="form-group">
+          <label for="modelo">Modelo</label>
+          <input type="text" id="modelo" placeholder="Modelo del Material" maxlength="50" [(ngModel)]="modelo" name="modelo" required>
+      </div>
+      <div class="form-group">
+        <label for="categoria">Categoría</label>
+        <select id="categoria" [(ngModel)]="material.categoria" name="categoria" required>
+          <option value="" disabled selected>Seleccione una categoría</option>
+          <option value="Libros de Texto">Libros de Texto</option>
+          <option value="Material de Laboratorio">Material de Laboratorio</option>
+          <option value="Equipos Electrónicos">Equipos Electrónicos</option>
+          <option value="Material de Dibujo Técnico">Material de Dibujo Técnico</option>
+          <option value="Instrumentos Musicales">Instrumentos Musicales</option>
+          <option value="Equipo Deportivo">Equipo Deportivo</option>
+          <option value="Material de Arte">Material de Arte</option>
+          <option value="Materiales de Mecanica">Materiales de Mecanica</option>
+          <option value="Software Educativo">Software Educativo</option>
+          <option value="Equipo de Seguridad">Equipo de Seguridad</option>
+          <option value="Material de Enfermería">Material de Enfermería</option>
+          <option value="Equipo de Cocina">Equipo de Cocina</option>
+          <option value="Material de Estudio">Material de Estudio</option>
+          <option value="Equipo Audiovisual">Equipo Audiovisual</option>
+          <option value="Otra...">Otra...</option>
+        </select>
+      </div>
+      <div class="form-group">
+          <label for="informacion">Descripción (Daños  y características técnicas)</label>
+          <textarea id="informacion" placeholder="Información adicional" [(ngModel)]="informacion" name="informacion" rows="5" cols="30"></textarea>
+      </div>
+      <div class="form-group">
+          <label for="serie">SERIE</label>
+          <input type="text" id="serie" placeholder="Número SERIE" [(ngModel)]="serie" name="serie" required>
+      </div>
+      <div class="form-group">
+          <label for="ejemplares">Cantidades disponibles</label>
+          <input type="number" id="ejemplares" placeholder="Número de ejemplares" [(ngModel)]="ejemplares" name="ejemplares" required>
+      </div>
+      <div class="form-group">
+          <label for="portada">Imagen del Material academico</label>
+          <input type="file" id="portada" (change)="onFileSelected($event)" accept="image/*">
+      </div>
+      <div class="buttons">
+          <button type="button" class="cancel-button" (click)="confirmCancel()">Cancelar</button>
+          <button type="submit" class="save-button">Guardar</button>
+      </div>
+  </form>
+</div>

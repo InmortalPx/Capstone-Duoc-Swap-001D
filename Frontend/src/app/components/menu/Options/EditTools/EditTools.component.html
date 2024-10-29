@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <h4 class="modal-title">Editar material académico</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #toolForm="ngForm">
+    <div class="form-group">
+      <label for="serie">SERIE</label>
+      <input type="text" class="form-control" id="serie" [(ngModel)]="tool.SERIE" name="serie" readonly>
+    </div>
+    <div class="form-group">
+      <label for="tipo">Típo</label>
+      <input type="text" class="form-control" id="tipo" [(ngModel)]="tool.Tipo" name="tipo" required>
+    </div>
+    <div class="form-group">
+      <label for="marca">Marca</label>
+      <input type="text" class="form-control" id="marca" [(ngModel)]="tool.Marca" name="marca" required>
+    </div>
+    <div class="form-group">
+      <label for="modelo">Modelo</label>
+      <input type="text" class="form-control" id="modelo" [(ngModel)]="tool.Modelo" name="modelo" required>
+    </div>
+    <div class="form-group">
+      <label for="categoria">Categoría</label>
+      <select id="categoria" [(ngModel)]="tool.Categoria" name="categoria" required>
+        <option value="" disabled selected>Seleccione una categoría</option>
+        <option value="Libros de Texto">Libros de Texto</option>
+        <option value="Material de Laboratorio">Material de Laboratorio</option>
+        <option value="Equipos Electrónicos">Equipos Electrónicos</option>
+        <!-- Otras opciones -->
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea class="form-control" id="descripcion" [(ngModel)]="tool.Descripcion" name="descripcion"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="cantidades">Cantidad Disponible</label>
+      <input type="number" class="form-control" id="cantidades" [(ngModel)]="tool.Cantidades" name="cantidades" required>
+    </div>
+    <div class="form-group">
+      <label for="portada">Imagen</label>
+      <input type="file" class="form-control" id="portada" (change)="onFileSelected($event)" accept="image/*">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="close()">Cancelar</button>
+  <button type="button" class="cancel-button" (click)="deleteTool()">Eliminar</button>
+  <button type="submit" class="save-button" (click)="saveTool()" [disabled]="!toolForm.valid">Guardar</button>
+</div>
+

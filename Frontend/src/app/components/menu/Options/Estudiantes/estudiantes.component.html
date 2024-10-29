@@ -1,0 +1,24 @@
+<div class="registro-estudiante">
+  <h1 class="form-title">Registro de Nuevos Estudiantes</h1>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nombreEstudiante">Nombre Completo</label>
+      <input type="text" id="NombreCompleto" placeholder="Nombre Completo" maxlength="50" [(ngModel)]="estudiante.NombreCompleto"   name="NombreCompleto" required>
+    </div>
+
+    <div class="form-group">
+      <label for="control">Numero de Control</label>
+      <input type="text" id="IdEstudiante" placeholder="Número de Control" maxlength="50" [(ngModel)]="estudiante.IdEstudiante" name="IdEstudiante" required>
+    </div>
+
+    <div class="form-group">
+      <label for="Correo">Correo Electrónico</label>
+      <input type="text" id="Correo" placeholder="Correo" maxlength="50" [(ngModel)]="estudiante.Correo" name="Correo"required>
+      
+    </div>
+
+    <button>Guardar</button>
+
+
+  </form>

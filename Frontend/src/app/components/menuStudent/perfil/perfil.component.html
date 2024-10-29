@@ -1,0 +1,56 @@
+<div class="container mt-5">
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white">
+        <h2 class="text-center mb-0">Mi Perfil de Usuario</h2>
+      </div>
+      <div class="card-body">
+        <div class="row justify-content-center">
+          <div class="col-md-4 text-center mb-3">
+            <div class="profile-image-container mb-3">
+              <img [src]="profileImageUrl" alt="Foto de perfil" class="img-fluid rounded-circle border border-primary border-3">
+            </div>
+            <div class="input-group">
+              <input type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+              <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Subir</button>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <form (ngSubmit)="saveProfile()" #perfilForm="ngForm">
+              <div class="mb-3">
+                <label for="NombreCompleto" class="form-label fw-bold">Nombre Completo:</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-user"></i></span>
+                  <input type="text" id="NombreCompleto" name="NombreCompleto" [(ngModel)]="estudiante.NombreCompleto" class="form-control" [readonly]="!isEditing">
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="IdEstudiante" class="form-label fw-bold">ID Estudiante:</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                  <input type="text" id="IdEstudiante" name="IdEstudiante" [(ngModel)]="estudiante.IdEstudiante" class="form-control" readonly>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="Correo" class="form-label fw-bold">Correo DUOC UC:</label>
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                  <input type="email" id="Correo" name="Correo" [(ngModel)]="estudiante.Correo" class="form-control" [readonly]="!isEditing">
+                </div>
+              </div>
+              <div class="text-center mt-4">
+                <button *ngIf="!isEditing" type="button" class="btn btn-primary btn-lg" (click)="toggleEditing()">
+                  <i class="fas fa-user-edit me-2"></i> Editar Perfil
+                </button>
+                <button *ngIf="isEditing" type="submit" class="btn btn-success btn-lg me-2">
+                  <i class="fas fa-save me-2"></i> Guardar Cambios
+                </button>
+                <button *ngIf="isEditing" type="button" class="btn btn-secondary btn-lg" (click)="toggleEditing()">
+                  <i class="fas fa-times me-2"></i> Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

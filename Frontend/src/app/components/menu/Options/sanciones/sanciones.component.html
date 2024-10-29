@@ -1,0 +1,157 @@
+<div class="container">
+  <h1>Gestión de Sanciones a usuarios</h1>
+
+  <!-- Mostrar alertas -->
+  <div *ngIf="alertMessage" class="alert" [ngClass]="{'alert-success': alertType === 'success', 'alert-error': alertType === 'error'}">
+    {{ alertMessage }}
+  </div>
+
+  <!-- Formulario para agregar sancion -->
+  <form *ngIf="!isEditing" (ngSubmit)="createSancion(sancionesForm)" #sancionesForm="ngForm">
+    <div>
+      <label for="IdEstudiante">Número de Control:</label>
+      <select id="IdEstudiante" name="IdEstudiante" ngModel required>
+        <option *ngFor="let estudiante of estudiantes" [value]="estudiante.IdEstudiante">{{ estudiante.IdEstudiante }} - {{ estudiante.NombreCompleto }}</option>
+      </select>
+      <div *ngIf="sancionesForm.submitted && sancionesForm.controls['IdEstudiante']?.invalid" class="error">
+        Seleccione un número de control.
+      </div>
+    </div>
+    
+    <div>  
+      <label for="Descripcion">Descripción:</label>  
+      <input type="text" id="Descripcion" name="Descripcion" ngModel required minlength="50">  
+      <div *ngIf="sancionesForm.submitted && sancionesForm.controls['Descripcion']?.errors">  
+        <div *ngIf="sancionesForm.controls['Descripcion']?.errors?.['required']">La descripción es requerida.</div>  
+        <div *ngIf="sancionesForm.controls['Descripcion']?.errors?.['minlength']">La descripción debe tener al menos 50 caracteres.</div>  
+      </div>  
+    </div>
+    
+    <div>
+      <label for="FechaInicio">Fecha de Inicio:</label>
+      <input type="datetime-local" id="FechaInicio" name="FechaInicio" ngModel required>
+      <div *ngIf="sancionesForm.submitted && sancionesForm.controls['FechaInicio']?.invalid" class="error">
+        La fecha de inicio es requerida.
+      </div>
+    </div>
+    
+    <div>
+      <label for="Estatus">Estatus:</label>
+      <select id="Estatus" name="Estatus" ngModel required>
+        <option value="Activa">Activa</option>
+        <option value="Pagada">Pagada</option>
+        <option value="Cancelada">Cancelada</option>
+      </select>
+      <div *ngIf="sancionesForm.submitted && sancionesForm.controls['Estatus']?.invalid" class="error">
+        El estatus es requerido.
+      </div>
+    </div>
+    
+    <div>
+      <label for="IdIntercambio">Id del Intercambio:</label>
+      <select id="IdIntercambio" name="IdIntercambio" ngModel required>
+        <option *ngFor="let intercambio of intercambios" [value]="intercambio.IdIntercambio">{{ intercambio.IdIntercambio }} - {{ intercambio.FechaIntercambio | date:'short' }}</option>
+      </select>
+      <div *ngIf="sancionesForm.submitted && sancionesForm.controls['IdIntercambio']?.invalid" class="error">
+        Seleccione un ID de intercambio válido.
+      </div>
+    </div>
+    
+    <button type="submit">Agregar sancion</button>
+  </form>
+
+  <!-- Formulario para editar sancion -->
+  <div *ngIf="isEditing">
+    <h2>Editar Sancion</h2>
+    <form (ngSubmit)="updateSancion()">
+      <div>
+        <label for="IdEstudiante">Número de Control:</label>
+        <select id="IdEstudiante" [(ngModel)]="selectedSancion.IdEstudiante" name="IdEstudiante" required>
+          <option *ngFor="let estudiante of estudiantes" [value]="estudiante.IdEstudiante">{{ estudiante.IdEstudiante }} - {{ estudiante.NombreCompleto }}</option>
+        </select>
+        <div *ngIf="!selectedSancion.IdEstudiante" class="error">
+          Seleccione un número de control.
+        </div>
+      </div>
+      
+      <div>
+        <label for="Descripcion">Descripción:</label>
+        <input type="text" id="Descripcion" [(ngModel)]="selectedSancion.Descripcion" name="Descripcion" required minlength="50">
+        <div *ngIf="!selectedSancion.Descripcion || selectedSancion.Descripcion.length < 50" class="error">
+          <div *ngIf="!selectedSancion.Descripcion">La descripción es requerida.</div>
+          <div *ngIf="selectedSancion.Descripcion.length < 50">La descripción debe tener al menos 50 caracteres.</div>
+        </div>
+      </div>
+      
+      <div>
+        <label for="FechaInicio">Fecha de Inicio:</label>
+        <input type="datetime-local" id="FechaInicio" [(ngModel)]="selectedSancion.FechaInicio" name="FechaInicio" required>
+        <div *ngIf="!selectedSancion.FechaInicio" class="error">
+          La fecha de inicio es requerida.
+        </div>
+      </div>
+      
+      <div>
+        <label for="Estatus">Estatus:</label>
+        <select id="Estatus" [(ngModel)]="selectedSancion.Estatus" name="Estatus" required>
+          <option value="Activa">Activa</option>
+          <option value="Pagada">Pagada</option>
+          <option value="Cancelada">Cancelada</option>
+        </select>
+        <div *ngIf="!selectedSancion.Estatus" class="error">
+          El estatus es requerido.
+        </div>
+      </div>
+      
+      <div>
+        <label for="IdIntercambio">Id de intercambio:</label>
+        <select id="IdIntercambio" [(ngModel)]="selectedSancion.IdIntercambio" name="IdIntercambio" required>
+          <option *ngFor="let intercambio of intercambios" [value]="intercambio.IdIntercambio">{{ intercambio.IdIntercambio }} - {{ intercambio.FechaIntercambio | date:'short' }}</option>
+        </select>
+        <div *ngIf="!selectedSancion.IdIntercambio" class="error">
+          Seleccione un ID de intercambio válido.
+        </div>
+      </div>
+      
+      <button type="submit">Actualizar Sancion</button>    
+    </form>
+  </div>
+
+  <!-- Lista de sanciones -->
+  <h2>Lista de sanciones</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Número de Control</th>
+        <th>Descripción</th>
+        <th>Fecha de Inicio</th>
+        <th>Estatus</th>
+        <th>Id de intercambio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sancion of sanciones">
+        <td>{{ sancion.IdSancion }}</td>
+        <td>{{ sancion.IdEstudiante }}</td>
+        <td>{{ sancion.Descripcion }}</td>
+        <td>{{ sancion.FechaInicio | date:'short' }}</td>
+        <td>{{ sancion.Estatus }}</td>
+        <td>{{ sancion.IdIntercambio }}</td>
+        <td>
+          <button class="edit-button" (click)="selectSancion(sancion)">Editar</button>
+          <button class="delete-button" (click)="deleteSancion(sancion.IdSancion)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+  }
+</style>

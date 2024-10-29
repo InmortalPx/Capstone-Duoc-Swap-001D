@@ -1,0 +1,90 @@
+<div class="search-tools">
+    <div class="search-header">
+        <h2 class="title" style="color: rgb(0, 0, 0);">Buscar Material academico</h2>
+        <input 
+            type="text" 
+            placeholder="Buscar por típo, marca, SERIE..." 
+            [(ngModel)]="searchQuery" 
+            (keydown.enter)="searchTools()">
+    </div>
+    <div class="filters">
+        <select [(ngModel)]="selectedAmarca" class="filter-select">
+            <option value="">Todos las Marcas</option>
+            <option *ngFor="let amarca of amarcas" [value]="amarca">{{ amarca }}</option>
+        </select>
+        <select [(ngModel)]="selectedPublisher" class="filter-select">
+            <option value="">Todas las categorias</option>
+            <option *ngFor="let publisher of publishers" [value]="publisher">{{ publisher }}</option>
+        </select>
+        <button class="search-button" (click)="searchTools()">Buscar</button>
+    </div>
+    <div *ngIf="loading" class="loading-screen">Cargando...</div> <!-- Pantalla de carga -->
+    <div class="results-container">
+        <div class="results">
+            <div *ngFor="let tool of tools" class="tool" (click)="previewTool(tool)">
+                <img [src]="getToolCoverUrl(tool)" alt="{{ tool.Tipo }}" class="tool-cover">
+                <h3>{{ tool.Tipo || 'Sin típo' }}</h3>
+                <p><strong>Marca:</strong> {{ tool.Marca || 'Desconocido' }}</p>
+                <p><strong>Editorial:</strong> {{ tool.Categoria || 'No especificada' }}</p>
+                <p><strong>SERIE:</strong> {{ tool.SERIE || 'No disponible' }}</p>
+                <button class="btn-custom" (click)="openLoanForm(tool, $event)">Solicitar intercambio</button>
+                <button class="btn-custom" (click)="openEditModal(tool, $event)">Editar</button> 
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showPreview" class="preview-modal" (click)="closePreview()">
+        <div class="preview-content" (click)="$event.stopPropagation()">
+            <span class="close" (click)="closePreview()">&times;</span>
+            <h2>{{ selectedTool.title }}</h2>
+            <img [src]="selectedTool.cover" alt="{{ selectedTool.title }}" class="tool-cover-preview">
+            <p><strong>Marca:</strong> {{ selectedTool.amarca }}</p>
+            <p><strong>Editorial:</strong> {{ selectedTool.publisher }}</p>
+            <p><strong>Sinopsis:</strong> {{ selectedTool.synopsis }}</p>
+            <p><strong>Cantidad disponible:</strong> {{ selectedTool.Cantidades }}</p> <!-- Mostrar cantidad disponible -->
+            <button class="btn-custom" (click)="openLoanForm(selectedTool, $event)">Solicitar intercambio</button>
+        </div>
+    </div>
+    <div *ngIf="showEmailWarning" class="alert alert-danger" (click)="closeEmailWarning()">
+        <div class="alert-content" (click)="$event.stopPropagation()">
+            <span class="close" (click)="closeEmailWarning()">&times;</span>
+            <h2>Advertencia</h2>
+            <p>El correo del Estudiante no ha sido confirmado. Por favor, confirme el correo para evitar problemas futuros.</p>
+        </div>
+    </div>
+    <div *ngIf="showLoanForm" class="modal" (click)="closeLoanForm($event)">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <span class="close" (click)="closeLoanForm()">&times;</span>
+            <div class="search-tools">
+                <h2>Solicitar intercambio</h2>
+                <label for="search">Buscar Estudiante:</label>
+                <input type="text" id="search" [(ngModel)]="searchQuery" (input)="filterEstudiantes()" placeholder="Escribe el número de control o nombre...">
+            
+                <form (ngSubmit)="submitLoanForm()">
+                    <label for="idEstudiante">Número de Control:</label>
+                    <select id="idEstudiante" [(ngModel)]="idEstudiante" name="idEstudiante" required>
+                        <option *ngFor="let estudiante of filteredEstudiantes" [value]="estudiante.IdEstudiante">{{ estudiante.IdEstudiante }} - {{ estudiante.NombreCompleto }}</option>
+                        <option *ngIf="filteredEstudiantes.length === 0" disabled>No hay sEtudiante disponibles</option> <!-- Mensaje si no hay estudiante -->
+                    </select>
+                
+                    <div>
+                        <label for="serie">SERIE:</label>
+                        <input type="text" id="serie" [(ngModel)]="serie" name="serie" required>
+                    </div>
+                    <div>
+                        <label for="fechaIntercambio">Fecha de intercambio:</label>
+                        <input type="date" id="fechaIntercambio" [(ngModel)]="fechaIntercambio" name="fechaIntercambio" required>
+                    </div>
+                    <div>
+                        <label for="fechaDevolucion">Fecha de Devolución:</label>
+                        <input type="date" id="fechaDevolucion" [(ngModel)]="fechaDevolucion" name="fechaDevolucion" required>
+                    </div>
+                    <div>
+                        <label for="idUsuario">ID Usuario:</label>
+                        <input type="number" id="idUsuario" [(ngModel)]="idUsuario" name="idUsuario" required>
+                    </div>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

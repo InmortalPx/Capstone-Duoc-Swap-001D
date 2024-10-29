@@ -1,0 +1,61 @@
+<!-- match.component.html -->
+<div class="container match-container">
+  <div class="card mb-4">
+    <div class="card-header">
+      <h2 class="mb-0 text-white">
+        <i class="fas fa-handshake match-icon"></i>Realizar un Match
+      </h2>
+    </div>
+    <div class="card-body">
+      <form (ngSubmit)="hacerMatch()">
+        <div class="mb-3">
+          <label for="tuId" class="form-label">
+            <i class="fas fa-user"></i> Tu ID:
+          </label>
+          <input type="text" class="form-control" id="tuId" [(ngModel)]="tuId" name="tuId" placeholder="Ingresa tu ID" required>
+        </div>
+        <div class="mb-3">
+          <label for="idUsuario" class="form-label">
+            <i class="fas fa-users"></i> ID del Usuario con quien hacer match:
+          </label>
+          <input type="text" class="form-control" id="idUsuario" [(ngModel)]="idUsuario" name="idUsuario" placeholder="ID del otro usuario" required>
+        </div>
+        <div class="mb-3">
+          <label for="serieProducto" class="form-label">
+            <i class="fas fa-barcode"></i> Serie del Producto:
+          </label>
+          <input type="text" class="form-control" id="serieProducto" [(ngModel)]="serieProducto" name="serieProducto" placeholder="Serie del Producto" required>
+        </div>
+        <button type="submit" [disabled]="!tuId || !idUsuario || !serieProducto" class="btn btn-primary btn-lg w-100">
+          <i class="fas fa-link"></i> Hacer Match
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header bg-secondary text-white">
+      <h3 class="mb-0">
+        <i class="fas fa-history match-icon"></i>Historial de Matches
+      </h3>
+    </div>
+    <div class="card-body">
+      <ul class="list-group">
+        <li *ngFor="let match of historialMatches" class="list-group-item d-flex justify-content-between align-items-center">
+          <span>
+            <i class="fas fa-user-friends text-primary"></i>
+            {{ match.User1Id }} - {{ match.User2Id }}
+          </span>
+          <span>
+            <i class="fas fa-box text-secondary"></i>
+            {{ match.Serie }}
+          </span>
+          <span class="badge bg-primary rounded-pill">
+            <i class="far fa-clock"></i>
+            {{ match.FechaMatch | date:'short' }}
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
