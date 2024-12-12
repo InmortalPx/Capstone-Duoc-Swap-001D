@@ -1,0 +1,85 @@
+<div>
+  <!-- Navbar -->
+  <div class="navbar">
+    <img src="https://i.ibb.co/bWYqgpQ/Captura-de-pantalla-2024-10-17-173641-removebg-preview.png" 
+         alt="Logo DSR" 
+         class="logo" 
+         (click)="showInicioSection()">
+    <div class="carousel-container">
+      <div class="menu-container">
+        <div class="menu-item" *ngFor="let item of menuItems" (click)="activeSection = item.section">
+          <mat-icon class="menu-icon">{{item.icon}}</mat-icon>
+          {{item.label}}
+        </div>
+      </div>
+    </div>
+    <div class="nav-icons-right">
+      <div class="image-container">
+        <button mat-icon-button [matMenuTriggerFor]="Notification">
+          <mat-icon>notifications</mat-icon>
+        </button>
+        <mat-menu #Notification="matMenu">
+          <span>Hola!, Aquí te mostraremos notificaciones relacionadas con mejoras en DuocSwap.</span>
+        </mat-menu>
+      </div>
+
+      <div class="image-container">
+        <button mat-icon-button [matMenuTriggerFor]="Question">
+          <mat-icon>help</mat-icon>
+        </button>
+        <mat-menu #Question="matMenu">
+          <span>Hola!, Aquí te mostraremos información relacionada a la página y algún contacto nuevo.</span>
+        </mat-menu>
+      </div>
+
+      <div class="image-container">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">
+            <span>Cerrar Sesión</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    <!-- Icono de Menú para Vista Móvil -->
+    <div class="mobile-menu" (click)="toggleMobileMenu()">
+      <mat-icon>apps</mat-icon>
+    </div>
+
+    <!-- Menú Móvil Desplegable -->
+    <div class="mobile-menu-dropdown" *ngIf="isMobileMenuVisible">
+      <div class="menu-item" *ngFor="let item of menuItems" (click)="activeSection = item.section; toggleMobileMenu()">
+        <mat-icon class="menu-icon">{{item.icon}}</mat-icon>
+        {{item.label}}
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="main-layout">
+    <!-- Content Section -->
+    <div class="content-section">
+      <div [ngSwitch]="activeSection">
+        <app-search-tools *ngSwitchCase="'search-tools'"></app-search-tools>
+        <app-perfil *ngSwitchCase="'perfil'"></app-perfil>
+        <app-noticias *ngSwitchCase="'noticias'"></app-noticias>
+        <app-match *ngSwitchCase="'matches'"></app-match>
+        <app-chats *ngSwitchCase="'chats'"></app-chats>
+        <app-ayuda *ngSwitchCase="'ayuda'"></app-ayuda>
+        <app-newtools *ngSwitchCase="'newtools'"></app-newtools>
+        <app-match-activos *ngSwitchCase="'match-activos'"></app-match-activos>
+        <app-mis-publicaciones *ngSwitchCase="'mis-publicaciones'"></app-mis-publicaciones>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 DuocSwap, derechos reservados TecnoPanas.</p>
+    </div>
+  </footer>
+</div>
+

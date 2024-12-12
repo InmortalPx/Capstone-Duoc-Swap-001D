@@ -1,0 +1,303 @@
+/* General styles */
+.search-tools {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: rgba(247, 249, 252, 0.9); /* Fondo más transparente */
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15); /* Más profundidad en la sombra */
+}
+
+/* Fondo blanco debajo del título */
+.search-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
+    margin-bottom: 40px;
+}
+
+/* Título */
+.title {
+    font-size: 34px; /* Aumento de tamaño */
+    font-weight: 700;
+    color: #34495e; /* Color más oscuro para el título */
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 4px solid #3498db; /* Línea más pronunciada */
+    text-align: center;
+}
+
+/* Filters */
+.filters {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.filter-select, .search-button {
+    padding: 14px 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    color: #34495e; /* Texto más oscuro */
+    background-color: #ecf0f1;
+    transition: all 0.3s ease;
+}
+
+.filter-select:focus, .search-button:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.search-button {
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Añadir sombra al botón */
+}
+
+.search-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.05); /* Efecto de aumento */
+}
+
+/* Results container */
+.results-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+/* Tool cards */
+.tool {
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 290px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tool:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Más sombra para destacar */
+}
+
+.tool-cover {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease;
+}
+
+.tool:hover .tool-cover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.tool h3 {
+    font-size: 20px; /* Título más grande para mayor impacto */
+    color: #34495e;
+    margin-top: 12px;
+    font-weight: 600;
+}
+
+.tool p {
+    color: #7f8c8d;
+    margin: 8px 0;
+    font-size: 14px; /* Reducción de tamaño para descripciones */
+}
+
+/* Button */
+.btn-custom {
+    padding: 12px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+/* Modal Styles */
+.preview-modal, .chat-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preview-content, .chat-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 700px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Sombra más intensa */
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    font-size: 30px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #3498db;
+}
+
+/* Chat Styles */
+.chat-box {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: #ecf0f1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #bdc3c7;
+}
+
+textarea {
+    width: 100%;
+    padding: 14px;
+    resize: none;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.send-button {
+    width: 100%;
+    background-color: #3498db;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-select, .search-button {
+        width: 100%;
+    }
+
+    .results-container {
+        display: block;
+    }
+
+    .tool {
+        width: 100%;
+        max-width: none;
+    }
+}
+.sistema-message {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+  }
+  
+
+  .typing-indicator {
+    font-style: italic;
+    color: gray;
+  }
+  
+
+  .mat-fab.extended {
+    background-color: #28a745; /* Color verde */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 50px; /* Borde redondeado para estilo 'FAB' */
+    padding: 10px 30px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    cursor: pointer; /* Cambiar cursor a mano al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle relieve */
+    transition: all 0.3s ease; /* Transición suave */
+  }
+  
+  .mat-fab.extended:hover {
+    background-color: #218838; /* Verde más oscuro en hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Incrementar la sombra */
+    transform: translateY(-2px); /* Pequeño movimiento hacia arriba */
+  }
+  
+  .mat-fab.extended:active {
+    background-color: #1e7e34; /* Verde más intenso al hacer clic */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra más tenue */
+    transform: translateY(2px); /* Movimiento hacia abajo al hacer clic */
+  }
+  
+  .contacting-alert-banner {
+    position: fixed;
+    top: 50%; /* Centrar verticalmente */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translate(-50%, -50%); /* Ajustar para centrar completamente */
+    background-color: #f5e791;
+    color: #333;
+    text-align: center;
+    padding: 15px 30px; /* Espaciado interno */
+    font-weight: bold;
+    font-size: 16px;
+    border: 2px solid #ff0000;
+    border-radius: 10px; /* Bordes redondeados */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añadir una sombra para destacar */
+  }
+  
+  .contacting-alert-banner strong {
+    color: #d32f2f; /* Color rojo para resaltar el texto */
+  }
+  
+  

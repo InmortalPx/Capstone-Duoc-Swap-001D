@@ -1,0 +1,159 @@
+-- Eliminar la base de datos si ya existe
+DROP DATABASE IF EXISTS Matchs;
+
+-- Crear la base de datos
+CREATE DATABASE Matchs;
+
+-- Usar la base de datos
+USE Matchs;
+
+-- Crear tabla 'Estudiante'
+CREATE TABLE Estudiante (
+    IdEstudiante INT AUTO_INCREMENT PRIMARY KEY,
+    NombreCompleto NVARCHAR(50) NOT NULL,
+    Correo NVARCHAR(100) NOT NULL,
+    Telefono NVARCHAR(15) NOT NULL,
+    IdStudent VARCHAR(10),
+    NombreUsuario NVARCHAR(50) NOT NULL UNIQUE,
+    Contrasena NVARCHAR(255) NOT NULL
+);
+
+
+
+-- Crear tabla 'Usuario'
+CREATE TABLE Usuario (
+    IdUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    NombreCompleto NVARCHAR(50) NOT NULL,
+    Correo NVARCHAR(100) NOT NULL,
+    Telefono NVARCHAR(15) NOT NULL,
+    IdAdmin VARCHAR(10),
+    NombreUsuario NVARCHAR(50) NOT NULL UNIQUE,
+    Contrasena NVARCHAR(255) NOT NULL
+);
+
+-- Crear tabla 'Herramienta'
+CREATE TABLE Herramienta (
+    SERIE NVARCHAR(14) PRIMARY KEY,
+    Tipo NVARCHAR(100) NOT NULL,
+    Marca NVARCHAR(100) NOT NULL,
+    Modelo NVARCHAR(100) NOT NULL,
+    Categoria NVARCHAR(100) NOT NULL,
+    Descripcion TEXT NOT NULL,
+    Cantidades INT NOT NULL,
+    Portada LONGBLOB
+);
+
+-- Crear tabla 'Matchs'
+CREATE TABLE Matchs (
+    IdMatch INT AUTO_INCREMENT PRIMARY KEY,
+    IdEstudiante INT,
+    SERIE NVARCHAR(14) NOT NULL,
+    FechaMatch DATE,
+    FechaEstimacion DATE,
+    IdUsuario INT,
+    Estado VARCHAR(30) DEFAULT 'Pendiente',
+    FOREIGN KEY (IdEstudiante) REFERENCES Estudiante(IdEstudiante),
+    FOREIGN KEY (SERIE) REFERENCES Herramienta(SERIE),
+    FOREIGN KEY (IdUsuario) REFERENCES Usuario(IdUsuario)
+);
+
+-- Crear tabla 'Chats'
+CREATE TABLE Chats (
+    IdChat INT AUTO_INCREMENT PRIMARY KEY,
+    IdEstudiante INT,
+    Mensaje NVARCHAR(255) NOT NULL,
+    FechaInicio DATE,
+    Estatus NVARCHAR(50),
+    IdMatch INT,
+    FOREIGN KEY (IdEstudiante) REFERENCES Estudiante(IdEstudiante),
+    FOREIGN KEY (IdMatch) REFERENCES Matchs(IdMatch)
+);
+
+-- Procedimiento para iniciar un chat cuando se genera un match
+DELIMITER //
+
+CREATE PROCEDURE CrearChat(
+    IN p_IdEstudiante INT,
+    IN p_IdMatch INT
+)
+BEGIN
+    -- Insertar un registro inicial en la tabla de Chats para iniciar el chat
+    INSERT INTO Chats (IdEstudiante, Mensaje, IdMatch)
+    VALUES (p_IdEstudiante, 'Chat iniciado.', p_IdMatch);
+END //
+
+DELIMITER ;
+
+-- Procedimiento para enviar un mensaje en el chat
+DELIMITER //
+
+CREATE PROCEDURE EnviarMensaje(
+    IN p_IdEstudiante INT,
+    IN p_IdMatch INT,
+    IN p_Mensaje NVARCHAR(255)
+)
+BEGIN
+    -- Insertar el mensaje en el chat correspondiente al match
+    INSERT INTO Chats (IdEstudiante, Mensaje, IdMatch)
+    VALUES (p_IdEstudiante, p_Mensaje, p_IdMatch);
+END //
+
+DELIMITER ;
+
+-- Procedimiento para actualizar los mensajes de chat automáticos si hay retraso en la fecha de estimación
+DELIMITER //
+
+CREATE PROCEDURE ActualizarMensajesPorRetraso()
+BEGIN
+    DECLARE done INT DEFAULT 0;
+    DECLARE idChat INT;
+    DECLARE idMatch INT;
+    DECLARE diasRetraso INT;
+
+    DECLARE cur CURSOR FOR 
+        SELECT IdChat, IdMatch, DATEDIFF(CURDATE(), FechaEstimacion) AS DiasRetraso
+        FROM Chats 
+        JOIN Matchs ON Chats.IdMatch = Matchs.IdMatch
+        WHERE Chats.Estatus = 'Activo' AND CURDATE() > Matchs.FechaEstimacion;
+
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = 1;
+
+    OPEN cur;
+
+    read_loop: LOOP
+        FETCH cur INTO idChat, idMatch, diasRetraso;
+        IF done THEN
+            LEAVE read_loop;
+        END IF;
+
+        -- Insertar un mensaje automático en el chat en caso de retraso
+        INSERT INTO Chats (IdEstudiante, Mensaje, IdMatch)
+        VALUES (
+            NULL, -- NULL indica que es un mensaje automático
+            CONCAT('Este match tiene un retraso de ', diasRetraso, ' días.'),
+            idMatch
+        );
+    END LOOP;
+
+    CLOSE cur;
+END //
+
+DELIMITER ;
+
+-- Evento para ejecutar la actualización de mensajes automáticos cada día
+DROP EVENT IF EXISTS ActualizarMensajesPorRetrasoDiario;
+CREATE EVENT IF NOT EXISTS ActualizarMensajesPorRetrasoDiario
+ON SCHEDULE EVERY 1 DAY
+DO
+    CALL ActualizarMensajesPorRetraso();
+
+-- Consultas de ejemplo para verificar los datos
+SELECT * FROM Estudiante;
+SELECT * FROM Usuario;
+SELECT * FROM Herramienta;
+SELECT * FROM Matchs;
+SELECT * FROM Chats;
+
+-- Configurar el usuario 'root' sin contraseña (opcional)
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'duocswap';
+FLUSH PRIVILEGES;

@@ -1,0 +1,16 @@
+<div class="match-history-container">
+  <h2>Mi Historial de Matches</h2>
+  
+  <div *ngIf="matchHistory.length === 0" class="no-matches">
+    No hay historial de matches.
+  </div>
+  
+  <div *ngFor="let match of matchHistory" class="match-item">
+    <h3>{{ match.toolName }}</h3>
+    <p><strong>Propietario:</strong> {{ match.owner }}</p>
+    <p><strong>Estado:</strong> {{ match.status }}</p>
+    <p><strong>Fecha de Confirmación:</strong> {{ match.confirmationDate | date:'short' }}</p>
+    <!-- Botón para eliminar el match -->
+    <button (click)="deleteMatch(match.id)" class="delete-button">Limpiar Historial</button>
+  </div>
+</div>

@@ -1,0 +1,141 @@
+/* General Styles */
+body {
+  font-family: 'Aptos', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.logo {
+  height: 40px; /* Reducción de tamaño para dispositivos móviles */
+}
+
+.header {
+  background-image: url('https://st2.depositphotos.com/5904380/11813/v/950/depositphotos_118137580-stock-illustration-seamless-pattern-color-school-supplies.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.fancy-paragraph {
+  font-family: 'Aptos', sans-serif;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0056b3;
+  color: white;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar .btn-link {
+  padding: 0;
+}
+
+.navbar-text {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .navbar-text {
+    display: inline;
+  }
+}
+
+/* Content Styles */
+.content-section .header .overlay {
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.95), rgba(240, 240, 240, 0.95));
+  padding: 40px;
+  border-radius: 20px;
+  color: #363535;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.content-section .header h2 {
+  font-family: 'Aptos', sans-serif;
+  font-size: 2.5em;
+  color: #0056b3;
+}
+
+/* Noticias Section */
+.seccion-noticias {
+  margin: 20px auto;
+  max-width: 100%;
+  text-align: center;
+}
+
+.card {
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.noticia-imagen {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Footer */
+.footer {
+  background-color: #ffffff;
+  padding: 20px 0;
+  text-align: center;
+  color: #2B6ADF;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+  .navbar-brand img {
+    height: 30px;
+  }
+
+  .navbar-text {
+    font-size: 0.9em;
+  }
+
+  .header h2 {
+    font-size: 1.8em;
+  }
+
+  .fancy-paragraph {
+    font-size: 1em;
+    padding: 15px;
+  }
+
+  .noticia-imagen {
+    height: 150px;
+  }
+
+  .footer {
+    padding: 15px 0;
+    font-size: 0.85em;
+  }
+}

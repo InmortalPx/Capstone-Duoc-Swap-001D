@@ -1,0 +1,62 @@
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg p-4" style="width: 100%; max-width: 600px; background-color: rgba(255, 255, 255, 0.9);">
+    <h1 class="text-center text-primary mb-4">Centro de Ayuda</h1>
+
+    <!-- Formulario para enviar solicitudes -->
+    <form (submit)="enviarSolicitud(); $event.preventDefault()">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre:</label>
+        <input
+          type="text"
+          id="nombre"
+          [(ngModel)]="nombre"
+          name="nombre"
+          class="form-control"
+          placeholder="Ingrese su nombre"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="correo" class="form-label">Correo:</label>
+        <input
+          type="email"
+          id="correo"
+          [(ngModel)]="correo"
+          name="correo"
+          class="form-control"
+          placeholder="Ingrese su correo @duocuc.cl"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label for="tipoSolicitud" class="form-label">Tipo de Solicitud:</label>
+        <select
+          id="tipoSolicitud"
+          [(ngModel)]="tipoSolicitud"
+          name="tipoSolicitud"
+          class="form-select"
+        >
+          <option value="">Seleccione una opción</option>
+          <option value="Soporte Técnico">Soporte Técnico</option>
+          <option value="Consulta Académica">Reportar mal uso</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+
+      <div class="mb-3">
+        <label for="mensaje" class="form-label">Mensaje:</label>
+        <textarea
+          id="mensaje"
+          [(ngModel)]="mensaje"
+          name="mensaje"
+          class="form-control"
+          rows="4"
+          placeholder="Ingrese su mensaje aquí"
+          (keypress)="enviarConEnter($event)"
+        ></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100">Enviar Solicitud</button>
+    </form>
+  </div>
+</div>

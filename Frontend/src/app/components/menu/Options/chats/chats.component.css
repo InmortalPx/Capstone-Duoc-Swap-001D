@@ -1,0 +1,151 @@
+.chat-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chat-list {
+  flex: 1;
+  max-width: 30%;
+  border-right: 2px solid #ddd;
+  padding: 10px;
+}
+
+.chat-list h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.chat-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chat-list li {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.chat-list li:hover {
+  background-color: #eef;
+  transform: scale(1.02);
+}
+
+.chat-list li strong {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.chat-list li p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.chat-window {
+  flex: 2;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.chat-window h3 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.chat-window .messages {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: #f7f7f7;
+}
+
+.chat-window .messages div {
+  margin-bottom: 10px;
+}
+
+.chat-window .messages div strong {
+  color: #333;
+}
+
+.chat-window input {
+  width: calc(100% - 100px);
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.chat-window button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.chat-window button:hover {
+  background-color: #0056b3;
+}
+
+.chat-window button:last-of-type {
+  background-color: #dc3545;
+  margin-left: 10px;
+}
+
+.chat-window button:last-of-type:hover {
+  background-color: #a71d2a;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .chat-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .chat-list {
+    max-width: 100%;
+    border-right: none;
+    border-bottom: 2px solid #ddd;
+  }
+
+  .chat-window {
+    flex: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-window input {
+    width: calc(100% - 80px);
+  }
+
+  .chat-window button {
+    padding: 8px 15px;
+  }
+
+  .chat-window button:last-of-type {
+    margin-left: 5px;
+  }
+}

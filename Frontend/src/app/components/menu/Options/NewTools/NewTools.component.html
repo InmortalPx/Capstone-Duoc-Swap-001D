@@ -1,0 +1,48 @@
+<div class="container">
+    <h1 class="form-title">Registrar Material o Regalo</h1>
+    <form (ngSubmit)="saveTool()">
+        <div class="form-group">
+            <label for="nombreHerramienta">Nombre del material o regalo</label>
+            <input type="text" id="nombreHerramienta" placeholder="Nombre" maxlength="50" [(ngModel)]="nombreHerramienta" name="nombreHerramienta" required>
+        </div>
+        <div class="form-group">
+            <label for="marca">Marca o Especificaciones</label>
+            <input type="text" id="marca" placeholder="Nombre de la Marca o especificaciones" maxlength="50" [(ngModel)]="marca" name="marca" required>
+        </div>
+        <div class="form-group">
+          <label for="modelo">Tipo</label>
+          <select id="modelo" [(ngModel)]="modelo" class="form-control">
+            <option value="regalo">Regalo</option>
+            <option value="intercambio">Intercambio</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="categoria">Categoría</label>
+          <select id="categoria" [(ngModel)]="categoria" name="categoria" required>
+            <option value="" disabled selected>Seleccione una categoría</option>
+            <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="informacion">Descripción (Daños  y características técnicas)</label>
+            <textarea id="informacion" placeholder="Información adicional" [(ngModel)]="informacion" name="informacion" rows="5" cols="30"></textarea>
+        </div>
+        <div>
+          <label for="serie">Serie:</label>
+          <input type="text" id="serie" [value]="serie" readonly />
+        </div>
+        <div class="form-group">
+            <label for="ejemplares">Cantidades disponibles</label>
+            <input type="number" id="ejemplares" placeholder="Número de ejemplares" [(ngModel)]="ejemplares" name="ejemplares" required>
+        </div>
+        <div class="form-group">
+            <label for="portada">Imagen del producto</label>
+            <input type="file" id="portada" (change)="onFileSelected($event)" accept="image/*">
+        </div>
+        <div class="buttons">
+            <button type="button" class="cancel-button" (click)="confirmCancel()">Cancelar</button>
+            <button type="submit" class="save-button">Guardar</button>
+        </div>
+    </form>
+  </div>
+  

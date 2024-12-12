@@ -1,0 +1,182 @@
+  /* Ajuste general */
+  body {
+    font-family: 'Arial', sans-serif;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffffff;
+    padding: 5px 10px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 60px;
+  }
+
+  .logo {
+    height: 40px;
+    margin: 0;
+  }
+
+  .image-container {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .nav-icons-right {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+
+  button[mat-icon-button] {
+    color: #2B6ADF;
+  }
+
+  .mat-icon {
+    font-size: 20px;
+  }
+
+  .main-layout {
+    display: flex;
+    flex-grow: 1;
+    margin-top: 60px;
+    overflow: hidden;
+  }
+
+  .content-section {
+    flex-grow: 2;
+    padding: 20px;
+    background-image: url('https://wallpapers.com/images/hd/exchange-1920-x-1536-wallpaper-9wi43bxnjsozqwv8.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow-y: auto;
+    min-height: calc(100vh - 60px - 40px);
+    width: 100%;
+  }
+
+  /* Contenedor de menús */
+  .carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: auto;
+    margin-right: auto;
+  }
+
+  .menu-container {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    white-space: nowrap;
+    scroll-snap-type: x mandatory;
+    padding: 5px;
+    gap: 5px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .menu-item {
+    flex: 0 0 auto;
+    padding: 5px 8px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    scroll-snap-align: start;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+  }
+
+  .menu-icon {
+    font-size: 18px;
+  }
+
+  .menu-item:hover {
+    background-color: #0056b3;
+  }
+
+  .menu-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .menu-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .mobile-menu {
+    display: none; /* Ocultar en pantallas grandes */
+    cursor: pointer;
+  }
+
+  .mobile-menu-dropdown {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-menu-dropdown .menu-item {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Responsividad en pantalla pequeña */
+  @media only screen and (max-width: 600px) {
+    .menu-container {
+      display: none; /* Ocultar en móviles */
+    }
+
+    .mobile-menu {
+      display: flex; /* Mostrar en móviles */
+    }
+
+    .mobile-menu-dropdown {
+      display: flex; /* Mostrar menú desplegable en móviles */
+    }
+
+    .navbar .logo {
+      height: 35px;
+    }
+
+    .nav-icons-right button[mat-icon-button] {
+      font-size: 18px;
+    }
+
+    .menu-item {
+      font-size: 12px;
+      padding: 5px 10px;
+    }
+  }
+
+  /* Footer */
+  .footer {
+    background-color: #ffffff;
+    padding: 15px 0;
+    text-align: center;
+    color: #2B6ADF;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }

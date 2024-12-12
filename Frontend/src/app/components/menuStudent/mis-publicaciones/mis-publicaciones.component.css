@@ -1,0 +1,289 @@
+/* Estilo del título */
+h1 {
+    text-align: center; 
+    font-family: 'Arial, sans-serif';
+    font-weight: bold; 
+    font-size: 2rem; 
+    color: #333; 
+}
+
+/* Ajuste responsivo del título */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem; /* Tamaño de fuente más pequeño en móviles */
+    }
+}
+
+/* Estilo para contenedor de herramientas */
+.search-tools {
+    position: relative;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    max-width: 900px;
+    margin: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: hidden;
+}
+
+/* Ajuste responsivo del contenedor */
+@media (max-width: 768px) {
+    .search-tools {
+        padding: 15px; 
+        max-width: 100%;
+    }
+}
+
+/* Ajuste de filtros */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-select {
+    padding: 12px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%; 
+    max-width: 200px;
+}
+
+/* Ajuste responsivo de filtros */
+@media (max-width: 768px) {
+    .filter-select {
+        max-width: 100%; /* Ancho completo en móviles */
+    }
+}
+
+/* Estilo para los botones */
+.btn-custom {
+    background-color: #585858; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin: 5px;
+}
+
+.btn-custom:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.btn-custom:active {
+    transform: scale(0.95);
+}
+
+/* Ajuste de resultados */
+.results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 20px;
+    justify-content: center; /* Centrar los resultados */
+}
+
+.tool {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: calc(33.333% - 40px);
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Ajuste responsivo de las tarjetas de herramientas */
+@media (max-width: 768px) {
+    .tool {
+        width: calc(100% - 40px); /* Ocupa el ancho completo en móviles */
+    }
+}
+
+/* Ajuste de imagen de herramienta */
+.tool img.tool-cover {
+    width: 190px;
+    height: 280px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Ajuste responsivo de la imagen de herramienta */
+@media (max-width: 768px) {
+    .tool img.tool-cover {
+        width: 100%; /* Ajustar al ancho del contenedor en móviles */
+        height: auto;
+    }
+}
+
+/* Estilo del modal de vista previa */
+.preview-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.5s;
+}
+
+/* Ajuste del contenido de la vista previa */
+.preview-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.preview-content img.tool-cover-preview {
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+/* Ajuste de la pantalla de carga */
+.loading-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    color: #2c3e50;
+    z-index: 10;
+}
+
+/* Ajuste responsivo de la pantalla de carga */
+@media (max-width: 768px) {
+    .loading-screen {
+        font-size: 1.2em; /* Tamaño de fuente más pequeño en móviles */
+    }
+}
+
+/* Ajuste del modal */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajuste responsivo del modal */
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%; /* Ajustar ancho en móviles */
+        margin: 30% auto; /* Ajustar margen */
+    }
+}
+
+.mat-fab.extended {
+    background-color: #28a745; /* Color verde */
+    color: white; /* Texto blanco */
+    border: none; /* Sin borde */
+    border-radius: 50px; /* Borde redondeado para estilo 'FAB' */
+    padding: 10px 30px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    cursor: pointer; /* Cambiar cursor a mano al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle relieve */
+    transition: all 0.3s ease; /* Transición suave */
+  }
+  
+  .mat-fab.extended:hover {
+    background-color: #218838; /* Verde más oscuro en hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Incrementar la sombra */
+    transform: translateY(-2px); /* Pequeño movimiento hacia arriba */
+  }
+  
+  .mat-fab.extended:active {
+    background-color: #1e7e34; /* Verde más intenso al hacer clic */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra más tenue */
+    transform: translateY(2px); /* Movimiento hacia abajo al hacer clic */
+  }
+  
+  /* Contenedor del botón */
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  /* Botón principal */
+  .menu-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #3498db; /* Azul principal */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra */
+    transition: all 0.3s ease;
+  }
+  
+  /* Hover y efecto de clic */
+  .menu-button:hover {
+    background-color: #2980b9; /* Azul más oscuro */
+    transform: translateY(-2px); /* Efecto de elevación */
+  }
+  
+  .menu-button:active {
+    background-color: #1c6d9e; /* Azul aún más oscuro */
+    transform: translateY(1px); /* Efecto de clic */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Sombra más tenue */
+  }
+  
+  /* Diseño responsivo */
+  @media (max-width: 600px) {
+    .menu-button {
+      width: 90%; /* Botón ocupa casi todo el ancho */
+      padding: 14px; /* Espaciado mayor */
+      font-size: 14px; /* Tamaño del texto reducido */
+    }
+  }
+  

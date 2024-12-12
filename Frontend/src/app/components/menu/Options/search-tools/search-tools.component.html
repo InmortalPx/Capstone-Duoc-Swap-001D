@@ -1,0 +1,79 @@
+<div class="search-tools">
+  <div class="search-header">
+    <h2 class="title">Buscar Material Académico</h2>
+    <div class="filters">
+      <select [(ngModel)]="selectedCategory" class="filter-select">
+        <option value="all">Seleccione una categoría</option>
+        <option value="">Todas</option>
+        
+        <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+      </select>
+      <button class="search-button" (click)="searchTools()">Buscar</button>
+    </div>
+  </div>
+
+<!-- Alerta de Contacto (estilo banner) -->
+<div *ngIf="showContactingAlert" class="contacting-alert-banner">
+  <strong>¡Estamos contactando con el dueño del producto!</strong> Por favor, espera...
+</div>
+
+
+
+  <!-- Pantalla de Carga -->
+  <div *ngIf="loading" class="loading-screen">Cargando...</div>
+
+  <!-- Resultados de Herramientas -->
+  <div class="results-container">
+    <div *ngFor="let tool of filteredTools" class="tool" (click)="previewTool(tool)">
+      <img [src]="getToolCoverUrl(tool)" alt="{{ tool.name }}" class="tool-cover">
+      <h3>{{ tool.name || 'Sin nombre' }}</h3>
+      <p><strong>Marca:</strong> {{ tool.brand || 'Desconocido' }}</p>
+      <p><strong>Categoría:</strong> {{ tool.category || 'No especificada' }}</p>
+      <p><strong>Tipo:</strong> {{ tool.type || 'No especificado' }}</p>
+      <button class="btn-custom" (click)="openLoanForm(tool, $event); $event.stopPropagation()">Solicitar Match</button>
+    </div>
+    <div *ngFor="let tool of tools" class="tool" (click)="previewTool(tool)">
+      <img [src]="getToolCoverUrl(tool)" alt="{{ tool.Tipo }}" class="tool-cover">
+      <h3>{{ tool.Tipo || 'Sin Nombre' }}</h3>
+      <p><strong>Marca:</strong> {{ tool.Marca || 'Desconocido' }}</p>
+      <p><strong>Categoria:</strong> {{ tool.Categoria || 'No especificada' }}</p>
+      <button class="mat-fab extended" (click)="openEditModal(tool, $event)">Editar</button>
+  </div>
+  </div>
+
+  <!-- Modal de Vista Previa -->
+  <div *ngIf="showPreview" class="preview-modal" (click)="closePreview()">
+    <div class="preview-content" (click)="$event.stopPropagation()">
+      <span class="close" (click)="closePreview()">&times;</span>
+      <h2>{{ selectedTool.name }}</h2>
+      <img [src]="selectedTool.image" alt="{{ selectedTool.name }}" class="tool-cover-preview">
+      <p><strong>Marca:</strong> {{ selectedTool.brand }}</p>
+      <p><strong>Categoría:</strong> {{ selectedTool.category }}</p>
+      <p><strong>Descripción:</strong> {{ selectedTool.description }}</p>
+      <p><strong>Dueño:</strong> {{ selectedTool.duenio }}</p>
+      <p><strong>Tipo:</strong> {{ selectedTool.type }}</p>
+      <button class="btn-custom" (click)="openLoanForm(selectedTool, $event)">Solicitar Match</button>
+    </div>
+  </div>
+
+  <!-- Modal de Chat -->
+  <div *ngIf="showChat" class="chat-modal">
+    <div class="chat-content">
+      <span class="close" (click)="closeChat()">&times;</span>
+      <h2>Chat con el propietario de {{ selectedTool.name }}</h2>
+      <div class="chat-box">
+        <div *ngFor="let message of chatMessages" [ngClass]="{ 'user-message': message.sender === 'Estudiante', 'bot-message': message.sender.includes('Usuario dueño'), 'sistema-message': message.sender === 'Sistema' }">
+          <strong>{{ message.sender }}:</strong> {{ message.text }}
+        </div>
+        <!-- Indicador de escribiendo -->
+        <div *ngIf="isTyping" class="typing-indicator">
+          <em>{{ selectedTool.duenio || 'Propietario' }} está escribiendo...</em>
+        </div>
+      </div>
+      
+      <!-- Entrada de Mensaje -->
+      <textarea [(ngModel)]="newMessage" placeholder="Escribe un mensaje..."></textarea>
+      <button class="send-button" (click)="sendMessage()">Enviar</button>
+    </div>
+  </div>
+</div>

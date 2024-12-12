@@ -1,0 +1,40 @@
+<div class="search-tools">
+    <h1>Mis Publicaciones</h1>
+    <div *ngIf="loading" class="loading-screen">Cargando...</div> <!-- Pantalla de carga -->
+    <div class="results-container">
+        <div class="results">
+            <div *ngFor="let tool of tools" class="tool" (click)="previewTool(tool)">
+                <img [src]="getToolCoverUrl(tool)" alt="{{ tool.Tipo}}" class="tool-cover">
+                <h3>{{ tool.Tipo || 'Sin Nombre' }}</h3>
+                <p><strong>Marca:</strong> {{ tool.Marca || 'Desconocido' }}</p>
+                <p><strong>Categoria:</strong> {{ tool.Categoria || 'No especificada' }}</p>
+                <button class="mat-fab extended" (click)="openEditModal(tool, $event)">Editar</button>
+            </div>
+        </div>
+    </div>
+    <!-- Botón para volver al menú principal -->
+    <div class="buttons">
+        <button class="menu-button" (click)="navigateToMenu()">Volver al Menú Principal</button>
+    </div>
+    
+
+    <div *ngIf="showPreview" class="preview-modal" (click)="closePreview()">
+        <div class="preview-content" (click)="$event.stopPropagation()">
+            <span class="close" (click)="closePreview()">&times;</span>
+            <h2>{{ selectedTool.title }}</h2>
+            <img [src]="selectedTool.cover" alt="{{ selectedTool.title }}" class="tool-cover-preview">
+            <p><strong>Marca:</strong> {{ selectedTool.amarca }}</p>
+            <p><strong>Categoria:</strong> {{ selectedTool.publisher }}</p>
+            <p><strong>Descripción:</strong> {{ selectedTool.synopsis }}</p>
+            <p><strong>Cantidad disponible:</strong> {{ selectedTool.Cantidades }}</p>
+        </div>
+    </div>
+
+    <div *ngIf="showEmailWarning" class="alert alert-danger" (click)="closeEmailWarning()">
+        <div class="alert-content" (click)="$event.stopPropagation()">
+            <span class="close" (click)="closeEmailWarning()">&times;</span>
+            <h2>Advertencia</h2>
+            <p>El correo del Estudiante no ha sido confirmado. Por favor, confirme el correo para evitar problemas futuros.</p>
+        </div>
+    </div>
+</div>

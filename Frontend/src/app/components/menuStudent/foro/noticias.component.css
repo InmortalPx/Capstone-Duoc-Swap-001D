@@ -1,0 +1,273 @@
+/* Contenedor principal */
+.noticias-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Botón de publicar */
+.btn-publicar {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-publicar:hover {
+    background-color: #0056b3;
+}
+
+/* Área de creación de publicación */
+.crear-publicacion {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos de textarea */
+textarea {
+    width: 100%;
+    height: 80px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    font-size: 14px;
+}
+
+/* Estilos de input tipo file */
+input[type="file"] {
+    margin-bottom: 10px;
+}
+
+/* Botón de publicar en creación */
+.btn-submit {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #218838;
+}
+
+/* Publicaciones */
+.post {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post-header h3 {
+    margin: 0;
+    color: #007bff;
+    font-size: 1.2em;
+}
+
+/* Contenido de la publicación */
+.post-contenido {
+    margin: 10px 0;
+}
+
+/* Imagen de la publicación */
+.post-imagen {
+    max-width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Reacciones */
+.reacciones {
+    margin: 10px 0;
+}
+
+.btn-react {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-react:hover {
+    background-color: #e0e0e0;
+}
+
+/* Contador de reacciones */
+.reacciones-count {
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+/* Comentarios */
+.comentarios {
+    margin-top: 10px;
+}
+
+.comentarios-list {
+    margin-top: 10px;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+.comentario {
+    margin: 5px 0;
+}
+
+/* Estilo de textarea de comentarios */
+.textarea-comentario {
+    width: 100%;
+    height: 60px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+/* Botón de comentar */
+.btn-comment {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-comment:hover {
+    background-color: #0056b3;
+}
+
+/* Vista previa de la imagen */
+.img-preview {
+    max-width: 100%;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para emojis */
+.emoji {
+    cursor: pointer;
+    font-size: 20px;
+    margin-right: 5px;
+    transition: transform 0.2s;
+}
+
+.emoji:hover {
+    transform: scale(1.2);
+}
+
+/* estilos para agregar un nuevo material */
+
+/* Espaciado superior para el contenido dentro de la barra lateral */
+.sidebar-top-space {
+    padding: 20px;
+    text-align: center; /* Centrar el contenido dentro de la barra lateral */
+}
+
+/* Estilos para la lista de navegación en la barra lateral */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Estilos para los elementos de la lista de navegación */
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+/* Estilos para los enlaces dentro de la barra lateral */
+.sidebar ul li a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    background-color: #007bff; /* Fondo azul similar al botón de arriba */
+    color: white; /* Color del texto en blanco */
+    padding: 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Cambio de color al pasar el mouse sobre el enlace */
+.sidebar ul li a:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+
+  
+/* Estilos para la sección de noticias */
+.seccion-noticias {
+    width: 100%;
+    background-color: rgba(245, 245, 245, 0.9);
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Estilos para la cuadrícula de noticias */
+.noticias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Estilos para los elementos de cada noticia */
+.noticia-item {
+    background-color: white;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Estilos para los títulos de cada noticia */
+.noticia-item h3 {
+    margin-top: 0;
+    color: #2B6ADF;
+}
+
+/* Estilos para las imágenes dentro de las noticias */
+.noticia-item img {
+    width: 100%; /* Asegura que las imágenes se expandan al ancho del contenedor */
+    height: auto; /* Mantiene la proporción original de la imagen */
+    border-radius: 5px 5px 0 0; /* Redondea los bordes superiores de la imagen */
+    object-fit: cover; /* Asegura que todas las imágenes tengan un aspecto uniforme */
+}

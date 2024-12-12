@@ -1,0 +1,82 @@
+<div>
+  <div class="navbar">
+    <button mat-icon-button (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <img src="https://i.ibb.co/bWYqgpQ/Captura-de-pantalla-2024-10-17-173641-removebg-preview.png" 
+         alt="Logo DSR" 
+         class="logo" 
+         (click)="showNoticiasSection()">    
+    <div>
+      <div class="image-container">
+        <button mat-icon-button [matMenuTriggerFor]="Notification">
+          <mat-icon>notifications</mat-icon>
+        </button>
+        <mat-menu #Notification="matMenu">
+          <span>Hola!, Aquí te mostraremos notificaciones relacionadas con mejoras en DuocSwap.</span>
+        </mat-menu>
+      </div>
+
+      <div class="image-container">
+        <button mat-icon-button [matMenuTriggerFor]="Question">
+          <mat-icon>help</mat-icon>
+        </button>
+        <mat-menu #Question="matMenu">
+          <span>Hola!, Aquí te mostraremos información relacionada a la página y algún contacto nuevo.</span>
+        </mat-menu>
+      </div>
+
+      <div class="image-container">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>account_circle</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logout()">
+            <span>Cerrar Sesión</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-layout">
+    <div class="sidebar" id="sidebar" [ngClass]="{'hidden': isSidebarHidden}">
+      <ul>
+        <li><a (click)="showNoticiasSection()">Inicio</a></li>
+        <li><a (click)="toggleSearchStudent()">Buscar Estudiantes</a></li>
+        <li><a (click)="showPersonalisado()">Generar reporte</a></li>
+        <li><a (click)="showRegistroUsuarios()">Nuevos Usuarios</a></li>
+      </ul>
+    </div>
+
+    <div class="content-section" [ngClass]="{'full-width': isSidebarHidden}">
+      <div *ngIf="showNoticias" class="seccion-noticias">
+        <h2>Administrador plataforma DuocSwap</h2>
+        <div class="noticias-grid">
+          <div *ngFor="let noticia of noticiasItems" class="noticia-item">
+            <h3>{{ noticia.tipo }}</h3>
+            <img [src]="noticia.imagen" [alt]="noticia.tipo">
+            <p>{{ noticia.contenido }}</p>
+          </div>
+        </div>
+      </div>
+
+    
+      <div *ngIf="showRegistro">
+        <app-usuarios></app-usuarios>
+      </div>
+      <div *ngIf="showSearchStudent">
+        <app-registro-estudiante></app-registro-estudiante>
+        <p *ngIf="showSearchStudent">Mostrando Buscador de Estudiante</p>
+      </div>
+      <div *ngIf="showReporte">
+        <app-personalizado></app-personalizado>
+      </div>
+    </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2024 DuocSwap, derechos reservados TecnoPanas.</p>
+    </div>
+  </footer>
+</div>

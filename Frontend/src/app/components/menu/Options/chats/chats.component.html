@@ -1,0 +1,25 @@
+<div class="chat-container">
+  <!-- Lista de chats -->
+  <div class="chat-list">
+    <h3>Historial de Chats</h3>
+    <ul>
+      <li *ngFor="let chat of chatHistory" (click)="selectChat(chat)">
+        <strong>{{ chat.participant }}</strong>
+        <p>Último mensaje: {{ chat.lastMessage }}</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Ventana del chat seleccionado -->
+  <div class="chat-window" *ngIf="selectedChat">
+    <h3>Chat con {{ selectedChat.participant }}</h3>
+    <div class="messages">
+      <div *ngFor="let message of selectedChat.messages">
+        <strong>{{ message.sender }}:</strong> {{ message.text }}
+      </div>
+    </div>
+    <input type="text" [(ngModel)]="newMessage" placeholder="Escribe un mensaje..." />
+    <button (click)="sendMessage()">Enviar</button>
+    <button (click)="closeChat()">Cerrar</button>
+  </div>
+</div>

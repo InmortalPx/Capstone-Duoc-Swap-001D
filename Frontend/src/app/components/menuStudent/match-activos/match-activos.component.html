@@ -1,0 +1,59 @@
+<div class="container mt-4">
+  <h3 class="text-center">Matches Activos</h3>
+
+  <!-- Mostrar un mensaje si no hay matches activos -->
+  <div *ngIf="activeMatches.length === 0" class="text-center mt-4">
+    <p>No tienes matches activos actualmente.</p>
+  </div>
+
+  <!-- Iterar sobre los matches activos -->
+  <div *ngFor="let match of activeMatches; trackBy: trackByMatchId" class="card my-3">
+    <div class="card-header">
+      <h5>{{ match.toolName }}</h5>
+      <p class="mb-0">
+        <strong>Propietario:</strong> {{ match.owner }}<br>
+        <strong>Estado:</strong> {{ match.status }}
+      </p>
+    </div>
+    <div class="card-body">
+      <!-- Botones para confirmar el match y mostrar/ocultar el chat -->
+      <div class="d-flex justify-content-between mb-3">
+        <button 
+          class="btn btn-success btn-sm" 
+          (click)="confirmMatch(match)">
+          Finalizar Match
+        </button>
+        <button 
+          class="btn btn-primary btn-sm" 
+          (click)="toggleChat(match)">
+          {{ match.showChat ? 'Ocultar Chat' : 'Ver Chat' }}
+        </button>
+      </div>
+
+      <!-- Mostrar chat solo si está habilitado -->
+      <div *ngIf="match.showChat" class="chat-container">
+        <h6>Chat con {{ match.owner }}</h6>
+        <div class="chat-box">
+          <!-- Mostrar mensajes del chat -->
+          <div *ngFor="let message of match.chatMessages" class="chat-message">
+            <strong>{{ message.sender }}:</strong> {{ message.text }}
+          </div>
+        </div>
+
+        <!-- Campo para enviar un nuevo mensaje -->
+        <div class="input-group mt-3">
+          <input 
+            type="text" 
+            [(ngModel)]="newMessage" 
+            class="form-control" 
+            placeholder="Escribe un mensaje...">
+          <button 
+            class="btn btn-primary" 
+            (click)="sendMessage(match)">
+            Enviar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

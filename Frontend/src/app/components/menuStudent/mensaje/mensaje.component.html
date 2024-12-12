@@ -1,0 +1,21 @@
+<div class="chat-history">
+  <h2>Historial de Chats</h2>
+  <ul>
+    <li *ngFor="let chat of chatHistory" (click)="selectChat(chat)">
+      <h3>{{ chat.participant }}</h3>
+      <p>Último mensaje: {{ chat.lastMessage }}</p>
+      <small>{{ chat.date }}</small>
+    </li>
+  </ul>
+</div>
+
+<div class="chat-details" *ngIf="selectedChat">
+  <h2>Detalles del Chat con {{ selectedChat.participant }}</h2>
+  <ul>
+    <li *ngFor="let message of selectedChat.messages">
+      <strong>{{ message.sender }}:</strong> {{ message.text }}
+      <small>{{ message.timestamp }}</small>
+    </li>
+  </ul>
+  <button (click)="closeChat()">Cerrar Chat</button>
+</div>

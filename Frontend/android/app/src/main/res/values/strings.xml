@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">DuocSwap</string>
+    <string name="title_activity_main">DuocSwap</string>
+    <string name="package_name">com.tecnopanas.DuocSwap</string>
+    <string name="custom_url_scheme">com.tecnopanas.DuocSwap</string>
+</resources>

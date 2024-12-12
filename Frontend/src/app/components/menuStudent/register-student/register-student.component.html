@@ -1,0 +1,167 @@
+<div class="container">
+  <h1 class="form-title">Registrar Nuevo Alumno</h1>
+
+  <!-- Formulario de registro -->
+  <form (ngSubmit)="saveEstudiante()">
+    <!-- Campo Nombre Completo -->
+    <div class="form-group">
+      <label for="NombreCompleto">Nombre del Estudiante</label>
+      <input
+        type="text"
+        id="NombreCompleto"
+        placeholder="Nombre del Estudiante"
+        maxlength="50"
+        required
+        [(ngModel)]="NombreCompleto"
+        name="NombreCompleto"
+      />
+    </div>
+
+    <!-- Campo Correo Electrónico -->
+    <div class="form-group">
+      <label for="Correo">Correo Electrónico</label>
+      <input
+        type="email"
+        id="Correo"
+        placeholder="Correo"
+        maxlength="100"
+        required
+        [(ngModel)]="Correo"
+        (ngModelChange)="validateEmail()"
+        name="Correo"
+      />
+      <div *ngIf="emailError" class="error-message">
+        El correo debe terminar con &#64;duocuc.cl
+      </div>
+    </div>
+
+    <!-- Campo Número Telefónico -->
+    <div class="form-group">
+      <label for="Telefono">Número Telefónico</label>
+      <input
+        type="tel"
+        id="Telefono"
+        placeholder="Número Telefónico"
+        maxlength="15"
+        required
+        [(ngModel)]="Telefono"
+        name="Telefono"
+      />
+    </div>
+
+    <!-- Campo Nombre de Usuario -->
+    <div class="form-group">
+      <label for="NombreUsuario">Nick</label>
+      <input
+        type="text"
+        id="NombreUsuario"
+        placeholder="Estudiante"
+        maxlength="50"
+        required
+        [(ngModel)]="NombreUsuario"
+        name="NombreUsuario"
+      />
+    </div>
+
+    <!-- Campo Contraseña -->
+    <div class="form-group">
+      <label for="Contrasena">Contraseña</label>
+      <input
+        type="password"
+        id="Contrasena"
+        placeholder="Contraseña"
+        maxlength="255"
+        required
+        [(ngModel)]="Contrasena"
+        name="Contrasena"
+      />
+    </div>
+
+    <!-- Normas y Condiciones -->
+    <div class="form-group terms">
+      <input
+        type="checkbox"
+        id="acceptTerms"
+        [(ngModel)]="acceptedTerms"
+        name="acceptTerms"
+        [disabled]="!canAcceptTerms"
+        required
+      />
+      <label for="acceptTerms">
+        Acepto los <a href="#" (click)="showTerms($event)">términos y condiciones</a>.
+      </label>
+    </div>
+    <div *ngIf="!canAcceptTerms" class="error-message">
+      Debes leer y cerrar los términos y condiciones antes de aceptar.
+    </div>
+
+    <!-- Botones Guardar/Cancelar -->
+    <div class="buttons">
+      <button type="button" (click)="confirmCancel()" class="btn-cancelar">Limpiar</button>
+      <button type="submit" class="btn-guardar" [disabled]="!acceptedTerms || emailError">Registrarse</button>
+    </div>
+  </form>
+
+  <!-- Overlay para los términos y condiciones -->
+  <div id="termsOverlay" (click)="hideTerms()"></div>
+  <div id="termsAndConditions">
+    <h2>Términos y Condiciones de Uso - DuocSwap</h2>
+    
+    <h3>1. Introducción</h3>
+    <p>Bienvenido a DuocSwap, la plataforma de intercambio de material académico de DuocUC. Al acceder o utilizar nuestra aplicación, aceptas estar sujeto a los términos y condiciones descritos a continuación. Si no estás de acuerdo con alguno de estos términos, te recomendamos no utilizar la plataforma.</p>
+
+    <h3>2. Definición del Servicio</h3>
+    <p>DuocSwap es una aplicación diseñada para facilitar el intercambio de material académico entre estudiantes de DuocUC. Los usuarios pueden subir, descargar, y compartir recursos como apuntes, ejercicios, presentaciones y otros contenidos útiles para su formación.</p>
+
+    <h3>3. Registro y Uso de la Plataforma</h3>
+    <ul>
+      <li>Para utilizar DuocSwap, deberás registrarte proporcionando información precisa y actualizada, incluyendo tu nombre, correo electrónico institucional (&#64;duocuc.cl), número telefónico y un nombre de usuario.</li>
+      <li>Al registrarte, aceptas ser responsable de mantener la confidencialidad de tus credenciales y de todas las actividades que se realicen con tu cuenta.</li>
+    </ul>
+
+    <h3>4. Uso Aceptable del Servicio</h3>
+    <ul>
+      <li>Solo puedes utilizar DuocSwap con fines académicos y para apoyar tu aprendizaje. Está prohibido el uso de la plataforma para distribuir contenido inapropiado, malintencionado, o que infrinja derechos de terceros.</li>
+      <li>El intercambio de material debe ser con fines educativos. No se permite la comercialización del material subido a la plataforma.</li>
+      <li>Al subir contenido, garantizas que posees los derechos para compartir dicho material y que el mismo no vulnera derechos de autor ni normativas de la institución.</li>
+    </ul>
+
+    <h3>5. Derechos de Propiedad Intelectual</h3>
+    <ul>
+      <li>Todo el material compartido en DuocSwap sigue perteneciendo a sus respectivos autores. Al subir cualquier contenido, estás otorgando a otros usuarios el derecho de utilizarlo con fines educativos sin ánimo de lucro.</li>
+      <li>DuocSwap se reserva el derecho de eliminar cualquier contenido que considere que infringe derechos de autor o que no cumple con los presentes términos.</li>
+    </ul>
+
+    <h3>6. Responsabilidad del Usuario</h3>
+    <ul>
+      <li>Los usuarios son responsables del contenido que suben y comparten. No deberás subir contenido ofensivo, ilegal, o que viole la privacidad de otras personas.</li>
+      <li>DuocSwap no se hace responsable de la exactitud o calidad del material compartido. El uso de los recursos es bajo tu propio riesgo.</li>
+    </ul>
+
+    <h3>7. Sanciones por Uso Inadecuado</h3>
+    <ul>
+      <li>La violación de estos términos puede resultar en la suspensión o cancelación de tu cuenta.</li>
+      <li>Cualquier uso que atente contra las normas de DuocUC o implique infracción de derechos de autor podrá ser reportado a las autoridades de la institución.</li>
+    </ul>
+
+    <h3>8. Privacidad y Uso de Datos</h3>
+    <ul>
+      <li>La información recopilada al registrarte será utilizada exclusivamente para el funcionamiento de la plataforma y para mejorar la experiencia de usuario.</li>
+      <li>DuocSwap no compartirá tu información personal con terceros sin tu consentimiento, salvo que sea requerido por la ley o para garantizar la seguridad de los usuarios.</li>
+    </ul>
+
+    <h3>9. Modificaciones a los Términos y Condiciones</h3>
+    <ul>
+      <li>DuocSwap se reserva el derecho de modificar estos términos en cualquier momento. Las modificaciones serán notificadas oportunamente a través de la plataforma.</li>
+      <li>Es responsabilidad del usuario revisar regularmente los términos para estar al tanto de los cambios.</li>
+    </ul>
+
+    <h3>10. Contacto</h3>
+    <p>Si tienes alguna duda sobre estos términos o sobre el uso de la plataforma, puedes contactar con el equipo de soporte de DuocSwap a través del correo electrónico: <a href="mailto:soporte&#64;duocswap.cl">soporte&#64;duocswap.cl</a>.</p>
+
+    <h3>11. Aceptación de los Términos</h3>
+    <p>Al registrarte y utilizar DuocSwap, estás aceptando estos términos y condiciones en su totalidad.</p>
+
+    <button (click)="hideTerms()">Cerrar</button>
+  </div>
+</div>

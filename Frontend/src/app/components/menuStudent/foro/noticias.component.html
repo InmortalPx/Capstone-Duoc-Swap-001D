@@ -1,0 +1,101 @@
+<div class="noticias-container">
+    <h1>SwapConnect</h1>
+    <button (click)="toggleCrearPublicacion()" class="btn-publicar">
+        <i class="fas fa-edit"></i> Realizar Publicación
+    </button>
+
+    <div *ngIf="mostrarCrearPublicacion" class="crear-publicacion">
+        <textarea [(ngModel)]="nuevoPostContenido" placeholder="Escribe tu publicación..."></textarea>
+        <input type="file" (change)="onFileSelected($event)" />
+        <img *ngIf="imagenSeleccionada" [src]="imagenPreview" alt="Imagen de vista previa" class="img-preview" />
+        <button (click)="crearNuevaPublicacion()" class="btn-submit">Publicar</button>
+    </div>
+
+    <div class="card my-4 p-4 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">
+            🎉 <strong>¡Nueva Oportunidad de Intercambio para la Comunidad DuocSwap!</strong> 🎉
+          </h5>
+          <p class="text-muted mb-4">
+            <small><strong>Fecha de Publicación:</strong> 11 de Noviembre de 2024</small>
+          </p>
+          <p>
+            Querida Comunidad DuocSwap, estamos emocionados de anunciar una nueva función que facilitará aún más el intercambio de herramientas y recursos entre estudiantes de la comunidad. Sabemos lo importante que es para ustedes contar con los materiales y equipos adecuados, y estamos aquí para ayudarles a encontrar lo que necesitan de manera rápida y segura.
+          </p>
+          <h6 class="mt-4">
+            🚀 <strong>Nueva Función: "Encuentra tu Match Perfecto"</strong> 🚀
+          </h6>
+          <p>
+            Con la nueva actualización, hemos añadido una función de "Matching Inteligente" que te ayudará a encontrar de forma automática usuarios que buscan exactamente lo que tú ofreces, ¡y viceversa! Esto no solo hará el proceso de intercambio más eficiente, sino que también fomentará nuevas conexiones dentro de nuestra comunidad.
+          </p>
+          <h6 class="mt-4"><strong>¿Cómo Funciona?</strong></h6>
+          <ul>
+            <li><strong>Actualiza tu Perfil:</strong> Asegúrate de que tu perfil esté completo, incluyendo las herramientas o recursos que deseas intercambiar.</li>
+            <li><strong>Define tus Preferencias:</strong> Indica claramente qué tipo de herramientas o materiales estás buscando.</li>
+            <li><strong>Recibe Sugerencias:</strong> Nuestra plataforma te mostrará usuarios que cumplen con tus requisitos, ¡y podrás iniciar un chat con ellos en un solo clic!</li>
+          </ul>
+          <h6 class="mt-4">
+            👥 <strong>Más Seguridad y Confianza</strong> 👥
+          </h6>
+          <p>
+            Estamos comprometidos con la seguridad de nuestra comunidad. Por eso, cada perfil y cada intercambio está sujeto a un sistema de calificación, para que puedas tener mayor confianza en las personas con las que intercambias.
+          </p>
+          <h6 class="mt-4">
+            🎁 <strong>Evento Especial: Intercambio Gratis de Herramientas por una Semana</strong> 🎁
+          </h6>
+          <p>
+            Para celebrar esta nueva función, desde el 15 al 22 de noviembre, ¡todos los intercambios dentro de la plataforma serán completamente gratuitos! Aprovecha esta oportunidad para intercambiar tus herramientas y recursos sin ningún costo y conecta con más miembros de la comunidad.
+          </p>
+        </div>
+      </div>
+      
+
+
+    <!-- Contenedor para app-newtools centrado en la pantalla -->
+    <div class="content-section" [ngClass]="{'full-width': isSidebarHidden}">
+        <div [ngSwitch]="activeSection">
+            <app-newtools *ngSwitchCase="'newTools'"></app-newtools>
+        </div>
+    </div>
+
+    <div *ngFor="let post of posts" class="post">
+        <div class="post-header">
+            <h3>{{ post.usuario }} - {{ post.fecha | date:'short' }}</h3>
+        </div>
+        <div class="post-contenido">
+            <p>{{ post.contenido }}</p>
+            <img *ngIf="post.imagen" [src]="post.imagen" alt="Imagen de la publicación" class="post-imagen" />
+        </div>
+        <div class="reacciones">
+            <span *ngFor="let reaccion of post.reacciones; let i = index" (click)="quitarReaccion(post, reaccion)" class="emoji">{{ reaccion }}</span>
+            <button (click)="reactToPost(post, '👍')" class="btn-react">👍</button>
+            <button (click)="reactToPost(post, '❤️')" class="btn-react">❤️</button>
+            <button (click)="reactToPost(post, '😡')" class="btn-react">😡</button>
+            <span class="reacciones-count">{{ post.reacciones.length }} reacciones</span>
+        </div>
+        <div class="comentarios">
+            <button (click)="toggleComentarios(post)">Comentarios ({{ post.comentarios.length }})</button>
+            <div *ngIf="post.mostrarComentarios" class="comentarios-list">
+                <div *ngFor="let comentario of post.comentarios" class="comentario">
+                    <strong>{{ comentario.nombre }}:</strong> <span>{{ comentario.texto }}</span>
+                </div>
+                <textarea [(ngModel)]="post.nuevoComentario" placeholder="Escribe un comentario..." class="textarea-comentario"></textarea>
+                <button (click)="comentar(post)" class="btn-comment">Comentar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-section" [ngClass]="{'full-width': isSidebarHidden}">
+
+    <div *ngIf="showSearch">
+      <app-search-tools></app-search-tools>
+    </div>
+</div>
+
+
+
+
+
+
+        
+    

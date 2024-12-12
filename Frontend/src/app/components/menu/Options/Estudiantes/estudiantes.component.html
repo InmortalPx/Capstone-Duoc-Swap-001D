@@ -1,0 +1,38 @@
+<div class="container py-5">
+  <h1 class="text-center text-primary mb-4">Gestión de Estudiantes</h1>
+
+  <!-- Formulario de búsqueda -->
+  <form class="d-flex justify-content-center mb-4" (submit)="buscarEstudiantes(); $event.preventDefault()">
+    <input
+      type="text"
+      class="form-control w-50 me-2"
+      placeholder="Buscar por nombre, usuario o correo"
+      [(ngModel)]="filtros.busqueda"
+      name="busqueda"
+    />
+    <button type="submit" class="btn btn-primary">Buscar</button>
+  </form>
+
+  <!-- Lista de estudiantes -->
+  <div *ngIf="estudiantes.length > 0" class="row">
+    <div *ngFor="let estudiante of estudiantes" class="col-md-6 col-lg-4 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">{{ estudiante.NombreCompleto }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ estudiante.NombreUsuario }}</h6>
+          <p class="card-text">{{ estudiante.Correo }}</p>
+          <button
+            (click)="eliminarEstudiante(estudiante.IdEstudiante)"
+            class="btn btn-danger w-100"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="estudiantes.length === 0" class="text-center">
+    <p class="text-muted">No hay estudiantes registrados.</p>
+  </div>
+</div>
